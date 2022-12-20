@@ -7,16 +7,18 @@ from rest_framework.response import Response
 from rest_framework import status
 from knox.views import LoginView as KnoxLoginView
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
+from .models import User
 
 class LoginView(KnoxLoginView):
     authentication_classes = [BasicAuthentication]
+    permission_classes = [AllowAny]
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
     def get_permissions(self):
-        if self.action in ['check_email']:
+        if self.action in ['check_email', 'create']:
             permission_classes = [AllowAny]
         else: 
             permission_classes = [IsAuthenticated]
