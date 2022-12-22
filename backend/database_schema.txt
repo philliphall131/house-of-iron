@@ -1,0 +1,82 @@
+Workout
+-
+id
+Name
+Type?
+program_id FK >- Program_Template.id
+
+Section
+-
+id
+type
+workout_id FK >- Workout.id
+
+Exercise
+-
+id
+name
+type_id
+
+Exercise_Type
+-
+id
+type
+body_part
+
+Planned_Exercise
+-
+id
+exercise_id FK >- Exercise.id
+section_id FK >- Section.id
+sets
+reps
+weight
+distance
+time
+
+Exercise_Workout_Targets
+-
+id
+planned_exercise_id FK >- Planned_Exercise.id
+sets_tgt
+min_reps
+max_reps
+
+Exercise_Logged
+-
+id
+jcn_id 
+sets_performed
+reps
+weight
+distance
+time
+
+User
+-
+id
+info
+past_programs
+
+Program_Template
+-
+id
+name
+author FK >- User.id
+duration_wks
+focus?
+
+Program
+-
+id
+template_id
+user_id
+
+
+
+# the programs template has a null user
+# when a user selects a program to do,
+# a copy of the program template is made
+# and linked to the user
+# or
+# make some sort of linked program

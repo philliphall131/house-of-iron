@@ -54,6 +54,14 @@ if DEBUG:
     CORS_ALLOWED_ORIGINS = [
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "http://localhost:19006",
+        "http://localhost:19000",
+        "http://127.0.0.1:19006",
+        "http://127.0.0.1:19000",
+        "http://192.168.1.193:19006",
+        "http://192.168.1.193:19000",
+        "exp://192.168.1.193:19006",
+        "exp://192.168.1.193:19000",
     ]
     CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
     CORS_ALLOW_CREDENTIALS = True

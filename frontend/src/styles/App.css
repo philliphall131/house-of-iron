@@ -1,5 +1,7 @@
 .standard-body {
   text-align: center;
+  max-height: 100vh;
+  max-width: 100vw;
 }
 
 .App-logo {
@@ -43,7 +45,7 @@
   border-radius: 6px;
   box-shadow: rgba(69, 68, 71, 0.4) 1px 1px 0;
   box-sizing: border-box;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   display: inline-flex;
   height: 48px;
@@ -89,3 +91,10 @@
 .link:active {
   color: #818633;
 }
+
+.splash-img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {text-decoration: none !important;}

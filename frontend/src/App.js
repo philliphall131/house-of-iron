@@ -40,7 +40,7 @@ function App() {
         case 'SIGN_OUT':
           // reset token to null
           localStorage.removeItem("userToken");
-          localStorage.removeItem("userId", null);
+          localStorage.removeItem("userId");
           return {
             ...prevState,
             isSignout: true,

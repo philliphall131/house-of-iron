@@ -9,14 +9,14 @@ const LandingPage = ({name}) => {
   return (
     <div className="standard-body">
       <div className="main-content">
-      <img src={splash} />
+      <img className="splash-img" src={splash} />
         { !state.user ?
           <div className='landing-buttons'>
             <Link to={'signup'}>
-              <button className="landing-button">Sign Up Page</button>
+              <button className="landing-button">Sign Up</button>
             </Link>
             <Link to={'login'}>
-              <button className="landing-button">Login Page</button>
+              <button className="landing-button">Login</button>
             </Link>
           </div> :
           <div className='landing-buttons'>

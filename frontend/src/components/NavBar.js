@@ -26,7 +26,7 @@ const NavBar = () => {
               </div>
             </Link>
             <Link className="my-nav-link" to="/login">
-              <div className="my-nav-link right-item" onClick={logout}>
+              <div className="my-nav-item right-item" onClick={logout}>
                 Logout
               </div>
             </Link>
