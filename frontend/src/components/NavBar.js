@@ -25,6 +25,11 @@ const NavBar = () => {
                 Dashboard
               </div>
             </Link>
+            <Link className="my-nav-link" to="/account">
+              <div className="my-nav-item">
+                My Account
+              </div>
+            </Link>
             <Link className="my-nav-link" to="/login">
               <div className="my-nav-item right-item" onClick={logout}>
                 Logout

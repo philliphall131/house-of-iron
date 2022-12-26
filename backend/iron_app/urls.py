@@ -6,6 +6,7 @@ from iron_app.views import LoginView
 
 r = routers.DefaultRouter()
 r.register('users', UserViewSet, basename='user')
+r.register('programs', ProgramViewSet, basename='program')
 
 urlpatterns = [
     path("", include(r.urls)),

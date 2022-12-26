@@ -3,43 +3,41 @@ import { useNavigate } from 'react-router';
 import { StateContext } from '../ContextObjs';
 import * as yup from 'yup';
 import { Formik } from 'formik';
-import { Form, Row } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import '../styles/Form.css';
+import ironAPI from '../utils/ironAPI';
 
 const NewProgramPage = () => {
-    const { state, dispatch } = useContext(StateContext);
+    const { state } = useContext(StateContext);
     const maxDuration = 26;
     const navigate = useNavigate();
 
     const validationSchema = yup.object().shape({
         name: yup.string()
             .required('A name for your program is required'),
-        duration: yup.number()
+        duration_wks: yup.number()
             .required('Pick a program duration'),
         description: yup.string()
     })
 
     const initialValues = {
         name:'',
-        duration:'4',
+        duration_wks:'4',
         description:''
     };
 
-    const onSubmit = async (values, { setSubmitting, setFieldError })=> {
-        console.log(values)
-        navigate('schedule')
-        // ironAPI.login(values)
-        //   .then((response)=>{
-        //     console.log('good', response)
-        //     dispatch({ type: 'SIGN_IN', data: response.data });
-        //     navigate("/dashboard", { replace: true });
-        //   })
-        //   .catch(error=>{
-        //     setFieldError('general', error.response.data.error)
-        //   })
-        //   .finally(()=>{
-        //     setSubmitting(false)
-        // })
+    const onSubmit = (values, { setSubmitting, setFieldError })=> {
+        ironAPI.createNewProgram(values, state.userToken)
+          .then((response)=>{
+            navigate(`${response.data.id}/workouts`)
+          })
+          .catch(error=>{
+            alert('error')
+            setFieldError('general', error.response.data.error)
+          })
+          .finally(()=>{
+            setSubmitting(false)
+        })
     }
 
     return (
@@ -79,11 +77,11 @@ const NewProgramPage = () => {
                         <Form.Select 
                             aria-label="duration-select" 
                             type="select"
-                            name="duration"
-                            value={values.duration}
+                            name="duration_wks"
+                            value={values.duration_wks}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            isInvalid={touched.duration && !!errors.duration}
+                            isInvalid={touched.duration_wks && !!errors.duration_wks}
                         >
                             {Array.from({length: maxDuration}, (x,i) => (
                                 <option key={`dur-${i}`} value={i+1}>{i+1}</option>

@@ -14,6 +14,7 @@ import ironAPI from './utils/ironAPI';
 import ProgramPage from './pages/ProgramPage';
 import WorkoutPage from './pages/WorkoutPage';
 import NewProgramPage from './pages/NewProgramPage';
+import CreateWorkoutsPage1 from './pages/CreateWorkoutsPage1';
 
 function App() {
 
@@ -107,6 +108,7 @@ function App() {
           <Route path="/dashboard" element={<Protected page={<Dashboard />}/>}/>
           <Route path="/program" element={<Protected page={<ProgramPage />}/>}/>
           <Route path="/program/new" element={<Protected page={<NewProgramPage />}/>}/>
+          <Route path="/program/new/:id/workouts" element={<Protected page={<CreateWorkoutsPage1 />}/>}/>
           <Route path="/program/workout" element={<Protected page={<WorkoutPage />}/>}/>
         </Routes>
       </StateContext.Provider>

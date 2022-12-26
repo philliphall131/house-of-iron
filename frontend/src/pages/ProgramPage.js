@@ -46,7 +46,6 @@ const ProgramPage = () => {
         </div>
       </div>
     </div>
-    
   )
 }
 

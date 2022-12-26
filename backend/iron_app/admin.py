@@ -5,8 +5,9 @@ from django.utils.translation import gettext_lazy as _
 
 class AppUserAdmin(UserAdmin):
     """adds some additional attributes to the default edit user page in django admin"""
+    readonly_fields = ('id',)
     fieldsets = (
-        (None, {"fields": ("email", "username", "password")}),
+        (None, {"fields": ("id", "email", "username", "password")}),
         (_("Personal info"), {"fields": ("first_name", "last_name")}),
         (
             _("Permissions"),
@@ -31,6 +32,10 @@ class AppUserAdmin(UserAdmin):
             },
         ),
     )
-    list_display = ("email", "first_name", "last_name", "is_staff")
+    list_display = ("id", "email", "first_name", "last_name", "is_staff")
+
+class ProgramAdmin(admin.ModelAdmin):
+    readonly_fields = ('id',)
 
 admin.site.register(User, AppUserAdmin)
+admin.site.register(Program, ProgramAdmin)

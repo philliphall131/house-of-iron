@@ -35,3 +35,20 @@ class UserViewSet(ModelViewSet):
             return Response({'user_exists':'true'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+class ProgramViewSet(ModelViewSet):
+    queryset = Program.objects.all()
+    serializer_class = ProgramSerializer
+
+    def create(self, request, *args, **kwargs):
+        # customized: adding in the logged in user as the author
+        request.data['author'] = request.user.id
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        #customized: after saving the model, using its Id as the base program ID for later copies
+        new_program = Program.objects.get(id=serializer.instance.id)
+        new_program.base_program_id = new_program.id
+        new_program.save(update_fields=['base_program_id'])
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

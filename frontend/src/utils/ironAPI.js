@@ -1,27 +1,34 @@
 import axios from "axios";
 
 let BASE_URL = "http://localhost:8000/api";
-
-const auth_token = (token=null) => {
-    return {
-        headers: {'Authorization': `Token ${token}`}
-    }
-}
-
 const ironAPI = {}
 
-ironAPI.login = async (loginData) => {
-    return await axios.post(`${BASE_URL}/login/`, loginData, {
-        auth: {
-          username: loginData.email,
-          password: loginData.password
+const config = (token=null, basicAuth=null) => {
+    let options = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
         }
-      })
+    }
+    if (token) {
+        options.headers.Authorization = `Token ${token}`
+    }
+    if (basicAuth) {
+        options.auth = {
+            'username': basicAuth.email,
+            'password': basicAuth.password
+        }
+    }
+    return options
+}
+
+ironAPI.login = async (loginData) => {
+    return await axios.post(`${BASE_URL}/login/`, {}, 
+        config(null, {email:loginData.email, password:loginData.password}))
 };
 
 ironAPI.logout = async (token) => {
-    console.log('token ', token)
-    return await axios.post(`${BASE_URL}/logout/`, {}, auth_token(token))
+    return await axios.post(`${BASE_URL}/logout/`, {}, config(token))
 };
 
 ironAPI.signup = async (signupData) => {
@@ -36,8 +43,12 @@ ironAPI.checkEmail = async (email) => {
     return true
 };
 
+ironAPI.createNewProgram = async (programData, token) => {
+    return await axios.post(`${BASE_URL}/programs/`, programData, config(token))
+};
+
 ironAPI.getUser = async (id, token) => {
-    return await axios.get(`${BASE_URL}/users/${id}/`, auth_token(token));
+    return await axios.get(`${BASE_URL}/users/${id}/`, config(token));
 }
 
 export default ironAPI
