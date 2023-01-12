@@ -46,9 +46,21 @@ class ProgramViewSet(ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+
         #customized: after saving the model, using its Id as the base program ID for later copies
         new_program = Program.objects.get(id=serializer.instance.id)
         new_program.base_program_id = new_program.id
         new_program.save(update_fields=['base_program_id'])
+
+        #customized: after creating/saving the model, create the related program days to get started
+        #these can be added to/removed later in the process
+        for i in range(new_program.duration_wks*7):
+            ProgramDay.objects.create(program=new_program, day=i+1, day_type='None')
+
+        #return the final instance
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+class ProgramDayViewSet(ModelViewSet):
+    queryset = ProgramDay.objects.all()
+    serializer_class = ProgramDaySerializer

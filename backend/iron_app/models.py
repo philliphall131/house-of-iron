@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
@@ -21,13 +22,27 @@ class Program(models.Model):
     athlete = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name='programs')
     active = models.BooleanField(default=False)
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['name','author'], name='unique_program'),
+        ]
+
     def __str__(self):
         return f'{self.name}'
 
+class ProgramDay(models.Model):
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="program_days")
+    day = models.IntegerField(validators=[MinValueValidator(1)])
+    day_type = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['program','day'], name='unique_program_day'),
+        ]
+
 class Workout(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
-    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="workouts")
-    workout_num = models.IntegerField()
+    program_day = models.ForeignKey(ProgramDay, on_delete=models.CASCADE, related_name="workouts")
     description = models.CharField(max_length=255)
 
 # class Section(models.Model):

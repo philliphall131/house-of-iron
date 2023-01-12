@@ -51,4 +51,8 @@ ironAPI.getUser = async (id, token) => {
     return await axios.get(`${BASE_URL}/users/${id}/`, config(token));
 }
 
+ironAPI.getProgram = async (id, token) => {
+    return await axios.get(`${BASE_URL}/programs/${id}/`, config(token));
+}
+
 export default ironAPI

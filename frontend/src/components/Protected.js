@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 const Protected = ({page}) => {
     const { state } = useContext(StateContext);
 
-    if (state.user){
+    if (state.user && state.isLoading === false){
         return page
     }
 

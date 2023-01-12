@@ -14,7 +14,8 @@ import ironAPI from './utils/ironAPI';
 import ProgramPage from './pages/ProgramPage';
 import WorkoutPage from './pages/WorkoutPage';
 import NewProgramPage from './pages/NewProgramPage';
-import CreateWorkoutsPage1 from './pages/CreateWorkoutsPage1';
+import CreateWorkoutsPage from './pages/CreateWorkoutsPage';
+import MyProgramsPage from './pages/MyProgramsPage';
 
 function App() {
 
@@ -74,12 +75,17 @@ function App() {
       }
       // If a token was retrieved, validate Token, get user info
       if (userId && userToken){
-        let userResponse = await ironAPI.getUser(userId, userToken)
-        if (userResponse && userResponse.data){
-          data = { user: userResponse.data, token: userToken }
-        } else {
-          console.log('Could not retrieve user with credentials stored, try logging in')
-        }
+        ironAPI.getUser(userId, userToken)
+          .then((userResponse)=>{
+            if (userResponse && userResponse.data){
+              data = { user: userResponse.data, token: userToken }
+            } else {
+              throw 'No response or no response data on credential check'
+            }
+          })
+          .catch(()=>{
+            dispatch({ type: 'SIGN_OUT' })
+          })
       };
       dispatch({ type: 'RESTORE_TOKEN', data });
     };
@@ -108,8 +114,9 @@ function App() {
           <Route path="/dashboard" element={<Protected page={<Dashboard />}/>}/>
           <Route path="/program" element={<Protected page={<ProgramPage />}/>}/>
           <Route path="/program/new" element={<Protected page={<NewProgramPage />}/>}/>
-          <Route path="/program/new/:id/workouts" element={<Protected page={<CreateWorkoutsPage1 />}/>}/>
+          <Route path="/program/new/:programId/workouts" element={<Protected page={<CreateWorkoutsPage />}/>}/>
           <Route path="/program/workout" element={<Protected page={<WorkoutPage />}/>}/>
+          <Route path="/programs" element={<Protected page={<MyProgramsPage />}/>}/>
         </Routes>
       </StateContext.Provider>
     </div>

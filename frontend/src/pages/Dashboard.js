@@ -22,7 +22,7 @@ const Dashboard = () => {
         <Link to="/program">
           <button className="dash-button">Current Program</button>
         </Link>
-        <Link to="/program">
+        <Link to="/programs">
           <button className="dash-button">View/Edit My Programs</button>
         </Link>
         <Link to="/program/new">
