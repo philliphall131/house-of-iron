@@ -118,7 +118,7 @@ function App() {
         <Route path="/program" element={<Protected state={state} page={<ProgramPage />}/>}/>
         <Route path="/program/new" element={<Protected state={state} page={<NewProgramPage state={state}/>}/>}/>
         <Route path="/program/edit/:programId" element={<Protected state={state} page={<EditProgramPage state={state}/>}/>}/>
-        <Route path="/workout/edit/:workoutId" element={<Protected state={state} page={<EditWorkoutPage />}/>}/>
+        <Route path="/workout/edit/:workoutId" element={<Protected state={state} page={<EditWorkoutPage state={state}/>}/>}/>
         <Route path="/programs" element={<Protected state={state} page={<MyProgramsPage state={state}/>}/>}/>
       </Routes>
     </div>
