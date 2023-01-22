@@ -39,24 +39,30 @@ class ProgramDay(models.Model):
         constraints = [
             models.UniqueConstraint(fields=['program','day'], name='unique_program_day'),
         ]
+    
+    def __str__(self):
+        return f'{self.program.name} Day {self.day}'
 
 class Workout(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     program_day = models.ForeignKey(ProgramDay, on_delete=models.CASCADE, related_name="workouts")
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.name}' if self.name else f'Workout Object ({self.pk})'
 
 # class Section(models.Model):
 #     type = models.CharField(max_length=255) #TODO: enum or table
 #     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='sections')
 
-# class Exercise(models.Model):
+# class ExerciseBase(models.Model):
 #     name = models.CharField(max_length=255)
 #     # type = models.CharField(max_length=255)
 #     # target body part
 #     description = models.CharField(max_length=255)
 
-# class PlannedExercise(models.Model):
-#     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='planned_exercises')
+# class Exercise(models.Model):
+#     exercise_base = models.ForeignKey(ExerciseBase, on_delete=models.CASCADE, related_name='exercises')
 #     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='planned_exercises')
 
 # class Set(models.Model):

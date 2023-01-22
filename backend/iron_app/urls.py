@@ -8,6 +8,7 @@ r = routers.DefaultRouter()
 r.register('users', UserViewSet, basename='user')
 r.register('programs', ProgramViewSet, basename='program')
 r.register('program_days', ProgramDayViewSet, basename='program_day')
+r.register('workouts', WorkoutViewSet, basename='workout')
 
 urlpatterns = [
     path("", include(r.urls)),

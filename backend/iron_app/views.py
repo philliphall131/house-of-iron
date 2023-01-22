@@ -60,7 +60,24 @@ class ProgramViewSet(ModelViewSet):
         #return the final instance
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    @action(detail=False)
+    def authored(self, request):
+        authored_programs = Program.objects.filter(author=request.user.id)
+        serializer = self.get_serializer(authored_programs, many=True)
+        return Response(serializer.data)
 
 class ProgramDayViewSet(ModelViewSet):
     queryset = ProgramDay.objects.all()
     serializer_class = ProgramDaySerializer
+
+class WorkoutViewSet(ModelViewSet):
+    queryset = Workout.objects.all()
+    serializer_class = WorkoutSerializer
+
+    def create(self, request, *args, **kwargs):
+        day = ProgramDay.objects.get(id = request.data['program_day'])
+        others = Workout.objects.filter(program_day = request.data['program_day'])
+        name = f'{day.program.name}-{day.day}.{len(others)+1}'
+        request.data['name'] = name
+        return super().create(request, *args, **kwargs)

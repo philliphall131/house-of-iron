@@ -1,15 +1,12 @@
 import * as yup from 'yup';
 import { Formik } from 'formik';
-import { Form, Row } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import '../styles/Form.css';
 import ironAPI from '../utils/ironAPI';
-import { StateContext } from '../ContextObjs';
 import { useNavigate } from "react-router-dom";
-import { useContext } from 'react';
 
-const LoginPage = () => {
+const LoginPage = ({dispatch}) => {
   let navigate = useNavigate();
-  const { dispatch } = useContext(StateContext);
 
   const validationSchema = yup.object().shape({
     email: yup.string()

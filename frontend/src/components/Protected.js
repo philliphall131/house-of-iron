@@ -1,9 +1,6 @@
-import { StateContext } from '../ContextObjs'
-import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 
-const Protected = ({page}) => {
-    const { state } = useContext(StateContext);
+const Protected = ({page, state}) => {
 
     if (state.user && state.isLoading === false){
         return page

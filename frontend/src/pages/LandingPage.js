@@ -1,11 +1,8 @@
 import '../styles/App.css';
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { StateContext } from '../ContextObjs';
 import splash from '../assets/splash.png';
 
-const LandingPage = ({name}) => {
-  const { state } = useContext(StateContext);
+const LandingPage = ({state}) => {
   return (
     <div className="standard-body">
       <div className="main-content">

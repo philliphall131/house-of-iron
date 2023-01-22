@@ -1,14 +1,11 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router';
-import { StateContext } from '../ContextObjs';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
 import '../styles/Form.css';
 import ironAPI from '../utils/ironAPI';
 
-const NewProgramPage = () => {
-    const { state } = useContext(StateContext);
+const NewProgramPage = ({state}) => {
     const maxDuration = 26;
     const navigate = useNavigate();
 
@@ -29,7 +26,7 @@ const NewProgramPage = () => {
     const onSubmit = (values, { setSubmitting, setFieldError })=> {
         ironAPI.createNewProgram(values, state.userToken)
           .then((response)=>{
-            navigate(`${response.data.id}/workouts`)
+            navigate(`/program/edit/${response.data.id}`, {replace:true})
           })
           .catch(error=>{
             alert('error')

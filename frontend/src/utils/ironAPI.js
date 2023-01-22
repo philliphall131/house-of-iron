@@ -55,4 +55,12 @@ ironAPI.getProgram = async (id, token) => {
     return await axios.get(`${BASE_URL}/programs/${id}/`, config(token));
 }
 
+ironAPI.getAuthoredPrograms = async (token) => {
+    return await axios.get(`${BASE_URL}/programs/authored/`, config(token));
+}
+
+ironAPI.addWorkout = async (data, token) => {
+    return await axios.post(`${BASE_URL}/workouts/`, data, config(token))
+}
+
 export default ironAPI

@@ -1,11 +1,9 @@
-import { useEffect, useContext } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Dashboard.css';
-import { StateContext } from '../ContextObjs';
 
 
-const Dashboard = () => {
-  const { state } = useContext(StateContext);
+const Dashboard = ({state}) => {
 
   useEffect(()=>{
     loadPrograms()

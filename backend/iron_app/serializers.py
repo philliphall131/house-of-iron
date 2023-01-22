@@ -19,16 +19,27 @@ class UserSerializer(serializers.ModelSerializer):
             validated_data["password"] = make_password(validated_data["password"])
         return super().update(instance, validated_data)
 
+class WorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout
+        fields = ['id', 'name', 'description', 'program_day']
+
 class ProgramDaySerializer(serializers.ModelSerializer):
+    workouts = WorkoutSerializer(many=True, read_only=True)
     class Meta:
         model = ProgramDay
-        fields = '__all__'
+        fields = ['id', 'program', 'day', 'day_type', 'workouts']
+        read_only_fields = ['workouts']
 
 class ProgramSerializer(serializers.ModelSerializer):
     program_days = ProgramDaySerializer(many=True, read_only=True)
     class Meta:
         model = Program
-        fields = ['id', 'name', 'author', 'description','duration_wks','base_program_id','athlete','active', 'program_days']
+        fields = ['id', 'name', 'author', 'description','duration_wks','base_program_id','athlete','active','program_days']
         read_only_fields = ['program_days']
-        
+
+class WorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout
+        fields = ['id', 'name', 'description', 'program_day']
 

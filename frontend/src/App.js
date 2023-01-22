@@ -1,7 +1,6 @@
 import './styles/App.css';
 import { useEffect, useReducer } from 'react';
 import { Routes, Route } from "react-router-dom";
-import { StateContext } from './ContextObjs';
 import NavBar from './components/NavBar';
 import LoadingScreen from './components/LoadingScreen';
 import LandingPage from './pages/LandingPage';
@@ -13,8 +12,9 @@ import SignedIn from './components/SignedIn';
 import ironAPI from './utils/ironAPI';
 import ProgramPage from './pages/ProgramPage';
 import WorkoutPage from './pages/WorkoutPage';
+import EditWorkoutPage from './pages/EditWorkoutPage';
 import NewProgramPage from './pages/NewProgramPage';
-import CreateWorkoutsPage from './pages/CreateWorkoutsPage';
+import EditProgramPage from './pages/EditProgramPage';
 import MyProgramsPage from './pages/MyProgramsPage';
 
 function App() {
@@ -49,6 +49,13 @@ function App() {
             userToken: null,
             user: null
           };
+        case 'NO_USER':
+          return {
+            ...prevState,
+            isLoading: false
+          }
+        default:
+          return null;
       }
     },
     {
@@ -79,6 +86,7 @@ function App() {
           .then((userResponse)=>{
             if (userResponse && userResponse.data){
               data = { user: userResponse.data, token: userToken }
+              dispatch({ type: 'RESTORE_TOKEN', data });
             } else {
               throw 'No response or no response data on credential check'
             }
@@ -86,16 +94,12 @@ function App() {
           .catch(()=>{
             dispatch({ type: 'SIGN_OUT' })
           })
+      } else {
+        dispatch({ type: 'NO_USER' })
       };
-      dispatch({ type: 'RESTORE_TOKEN', data });
     };
     bootstrapAsync();
   }, []);
-
-  const stateContext = {
-    'state': state,
-    'dispatch': dispatch
-  }
 
   if (state.isLoading) {
     return (
@@ -105,20 +109,18 @@ function App() {
 
   return (
     <div>
-      <StateContext.Provider value={stateContext}>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<LandingPage name={state.testUser}/>}/>
-          <Route path="/signup" element={<SignedIn page={<SignupPage />}/>}/>
-          <Route path="/login" element={<SignedIn page={<LoginPage />}/>}/>
-          <Route path="/dashboard" element={<Protected page={<Dashboard />}/>}/>
-          <Route path="/program" element={<Protected page={<ProgramPage />}/>}/>
-          <Route path="/program/new" element={<Protected page={<NewProgramPage />}/>}/>
-          <Route path="/program/new/:programId/workouts" element={<Protected page={<CreateWorkoutsPage />}/>}/>
-          <Route path="/program/workout" element={<Protected page={<WorkoutPage />}/>}/>
-          <Route path="/programs" element={<Protected page={<MyProgramsPage />}/>}/>
-        </Routes>
-      </StateContext.Provider>
+      <NavBar state={state} dispatch={dispatch}/>
+      <Routes>
+        <Route path="/" element={<LandingPage state={state}/>}/>
+        <Route path="/signup" element={<SignedIn state={state} page={<SignupPage dispatch={dispatch}/>}/>}/>
+        <Route path="/login" element={<SignedIn state={state} page={<LoginPage dispatch={dispatch}/>}/>}/>
+        <Route path="/dashboard" element={<Protected state={state} page={<Dashboard state={state}/>}/>}/>
+        <Route path="/program" element={<Protected state={state} page={<ProgramPage />}/>}/>
+        <Route path="/program/new" element={<Protected state={state} page={<NewProgramPage state={state}/>}/>}/>
+        <Route path="/program/edit/:programId" element={<Protected state={state} page={<EditProgramPage state={state}/>}/>}/>
+        <Route path="/workout/edit/:workoutId" element={<Protected state={state} page={<EditWorkoutPage />}/>}/>
+        <Route path="/programs" element={<Protected state={state} page={<MyProgramsPage state={state}/>}/>}/>
+      </Routes>
     </div>
   );
 }
