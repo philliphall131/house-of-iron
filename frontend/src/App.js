@@ -1,21 +1,11 @@
 import './styles/App.css';
 import { useEffect, useReducer } from 'react';
 import { Routes, Route } from "react-router-dom";
-import NavBar from './components/NavBar';
-import LoadingScreen from './components/LoadingScreen';
-import LandingPage from './pages/LandingPage';
-import Dashboard from './pages/Dashboard';
-import SignupPage from './pages/SignupPage';
-import LoginPage from './pages/LoginPage';
-import Protected from './components/Protected';
-import SignedIn from './components/SignedIn';
+import AuthContext from './utils/AuthContext'
 import ironAPI from './utils/ironAPI';
-import ProgramPage from './pages/ProgramPage';
-import WorkoutPage from './pages/WorkoutPage';
-import EditWorkoutPage from './pages/EditWorkoutPage';
-import NewProgramPage from './pages/NewProgramPage';
-import EditProgramPage from './pages/EditProgramPage';
-import MyProgramsPage from './pages/MyProgramsPage';
+import { NavBar, LoadingScreen, Protected, SignedIn } from './components/components';
+import { LandingPage, Dashboard, SignupPage, LoginPage, MyProgramsPage,
+  ProgramPage, EditWorkoutPage, NewProgramPage, EditProgramPage } from "./pages/pages";
 
 function App() {
 
@@ -101,27 +91,28 @@ function App() {
     bootstrapAsync();
   }, []);
 
-  if (state.isLoading) {
-    return (
-      <LoadingScreen />
-    )
-  }
-
   return (
-    <div>
-      <NavBar state={state} dispatch={dispatch}/>
-      <Routes>
-        <Route path="/" element={<LandingPage state={state}/>}/>
-        <Route path="/signup" element={<SignedIn state={state} page={<SignupPage dispatch={dispatch}/>}/>}/>
-        <Route path="/login" element={<SignedIn state={state} page={<LoginPage dispatch={dispatch}/>}/>}/>
-        <Route path="/dashboard" element={<Protected state={state} page={<Dashboard state={state}/>}/>}/>
-        <Route path="/program" element={<Protected state={state} page={<ProgramPage />}/>}/>
-        <Route path="/program/new" element={<Protected state={state} page={<NewProgramPage state={state}/>}/>}/>
-        <Route path="/program/edit/:programId" element={<Protected state={state} page={<EditProgramPage state={state}/>}/>}/>
-        <Route path="/workout/edit/:workoutId" element={<Protected state={state} page={<EditWorkoutPage state={state}/>}/>}/>
-        <Route path="/programs" element={<Protected state={state} page={<MyProgramsPage state={state}/>}/>}/>
-      </Routes>
-    </div>
+    <>
+      { state.isLoading 
+        ?
+          <LoadingScreen /> 
+        :
+          <AuthContext.Provider value={{state, dispatch}}>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<LandingPage />}/>
+              <Route path="/signup" element={<SignedIn  page={<SignupPage />}/>}/>
+              <Route path="/login" element={<SignedIn  page={<LoginPage />}/>}/>
+              <Route path="/dashboard" element={<Protected  page={<Dashboard />}/>}/>
+              <Route path="/program" element={<Protected  page={<ProgramPage />}/>}/>
+              <Route path="/program/new" element={<Protected  page={<NewProgramPage />}/>}/>
+              <Route path="/program/edit/:programId" element={<Protected  page={<EditProgramPage />}/>}/>
+              <Route path="/workout/edit/:workoutId" element={<Protected  page={<EditWorkoutPage />}/>}/>
+              <Route path="/programs" element={<Protected  page={<MyProgramsPage />}/>}/>
+            </Routes>
+          </AuthContext.Provider>
+      }
+    </>
   );
 }
 

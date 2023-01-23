@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import '../styles/App.css';
 import { Link } from 'react-router-dom';
 import splash from '../assets/splash.png';
+import AuthContext from '../utils/AuthContext';
 
-const LandingPage = ({state}) => {
+const LandingPage = () => {
+  const { state } = useContext(AuthContext);
+
   return (
     <div className="standard-body">
       <div className="main-content">

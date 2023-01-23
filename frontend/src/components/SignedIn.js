@@ -1,6 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../utils/AuthContext';
 
-const SignedIn = ({page, state}) => {
+const SignedIn = ({page}) => {
+    const { state } = useContext(AuthContext);
 
     if (!state.user){
         return page

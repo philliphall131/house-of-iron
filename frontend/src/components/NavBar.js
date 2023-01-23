@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/NavBar.css';
 import ironAPI from '../utils/ironAPI';
+import AuthContext from '../utils/AuthContext';
 
-const NavBar = ({state, dispatch}) => {
-  
+const NavBar = () => {
+  const { state, dispatch } = useContext(AuthContext);
+
   const logout = ()=>{
     ironAPI.logout(state.userToken)
     dispatch({ type: 'SIGN_OUT' })

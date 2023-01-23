@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import weights from '../assets/weights.jpg';
 import '../styles/Program.css';
 import { Container } from 'react-bootstrap';
 import ironAPI from '../utils/ironAPI';
 import ProgramGroup from '../components/ProgramGroup';
+import AuthContext from '../utils/AuthContext';
 
-const MyProgramsPage = ({state}) => {
+const MyProgramsPage = () => {
+  const { state } = useContext(AuthContext);
   const [authoredPrograms, setAuthoredPrograms] = useState(null);
 
   useEffect(() => {

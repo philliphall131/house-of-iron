@@ -10,21 +10,21 @@ const ProgramPage = () => {
     const days = (num) => {
       return (
         <>
-        <Link to="workout" className="link">
-          <div className='program-days' key={`day-${num}`}>
-            <div className="program-day">Day<br/>{`${num}`}</div>
-            <div className="vr"></div>
-            <div className="program-workout">
-              <div>{`Workout 1-${num}`}<br/>Type: Squat/Bench</div> 
+          <Link to="workout" className="link">
+            <div className='program-days' key={`day-${num}`}>
+              <div className="program-day">Day<br/>{`${num}`}</div>
+              <div className="vr"></div>
+              <div className="program-workout">
+                <div>{`Workout 1-${num}`}<br/>Type: Squat/Bench</div> 
+              </div>
+              <div className="vr"></div>
+              <div  className="program-day-complete">
+                <div className="circle"></div>
+                <div className="carrot">{`>`}</div>
+              </div>
             </div>
-            <div className="vr"></div>
-            <div  className="program-day-complete">
-              <div className="circle"></div>
-              <div className="carrot">{`>`}</div>
-            </div>
-          </div>
-        </Link>
-        <hr/>
+          </Link>
+          <hr/>
         </>
       )
     }
