@@ -51,9 +51,9 @@ class Workout(models.Model):
     def __str__(self):
         return f'{self.name}' if self.name else f'Workout Object ({self.pk})'
 
-# class Section(models.Model):
-#     type = models.CharField(max_length=255) #TODO: enum or table
-#     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='sections')
+class Section(models.Model):
+    section_type = models.CharField(max_length=255)
+    workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='sections')
 
 # class ExerciseBase(models.Model):
 #     name = models.CharField(max_length=255)

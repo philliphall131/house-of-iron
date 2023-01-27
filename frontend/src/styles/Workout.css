@@ -102,3 +102,77 @@
 .exercise {
   padding-left: 10px;
 }
+
+.workout-editor-body {
+  background-color: rgb(234, 234, 234);
+  border: #8A9A3C;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  min-height: 60vh;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 10vw;
+  margin-left: 10vw;
+}
+
+.save-workout-col {
+  justify-content: center;
+  text-align: center;
+}
+
+.edit-workout-section {
+  background-color: rgb(234, 234, 234);
+}
+
+.section-header {
+  background-color: #8A9A3C;
+  display: flex;
+  height: 30px;
+}
+
+.section-body {
+  height: 100px;
+}
+
+.remove-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: right;
+  padding-top: 1px;
+}
+
+.empty-section {
+  flex-grow: 1;
+}
+
+.section-title {
+  flex-grow: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xmark-icon {
+  padding-right: 10px;
+  height: 25px;
+  width: 25px;
+}
+
+.xmark-img {
+  height: 25px;
+  width: 25px;
+  background-color: black;
+  border-radius: 3px;
+  align-self: center;
+}
+
+.xmark-img:active {
+  height: 20px;
+  width: 20px;
+}
+
+.img-container {
+  width: 30px;
+}

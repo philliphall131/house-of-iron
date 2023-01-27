@@ -63,4 +63,16 @@ ironAPI.addWorkout = async (data, token) => {
     return await axios.post(`${BASE_URL}/workouts/`, data, config(token))
 }
 
+ironAPI.getWorkout = async (id, token) => {
+    return await axios.get(`${BASE_URL}/workouts/${id}/`, config(token));
+}
+
+ironAPI.addSection = async (data, token) => {
+    return await axios.post(`${BASE_URL}/sections/`, data, config(token))
+}
+
+ironAPI.deleteSection = async (id, token) => {
+    return await axios.delete(`${BASE_URL}/sections/${id}`, config(token))
+}
+
 export default ironAPI

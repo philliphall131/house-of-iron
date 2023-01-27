@@ -19,10 +19,17 @@ class UserSerializer(serializers.ModelSerializer):
             validated_data["password"] = make_password(validated_data["password"])
         return super().update(instance, validated_data)
 
+class SectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Section
+        fields = ['id', 'section_type', 'workout']
+
 class WorkoutSerializer(serializers.ModelSerializer):
+    sections = SectionSerializer(many=True, read_only=True)
     class Meta:
         model = Workout
-        fields = ['id', 'name', 'description', 'program_day']
+        fields = ['id', 'name', 'description', 'program_day', "sections"]
+        read_only_fields = ['sections']
 
 class ProgramDaySerializer(serializers.ModelSerializer):
     workouts = WorkoutSerializer(many=True, read_only=True)
@@ -37,9 +44,4 @@ class ProgramSerializer(serializers.ModelSerializer):
         model = Program
         fields = ['id', 'name', 'author', 'description','duration_wks','base_program_id','athlete','active','program_days']
         read_only_fields = ['program_days']
-
-class WorkoutSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Workout
-        fields = ['id', 'name', 'description', 'program_day']
 

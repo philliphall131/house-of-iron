@@ -81,3 +81,7 @@ class WorkoutViewSet(ModelViewSet):
         name = f'{day.program.name}-{day.day}.{len(others)+1}'
         request.data['name'] = name
         return super().create(request, *args, **kwargs)
+
+class SectionViewSet(ModelViewSet):
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer

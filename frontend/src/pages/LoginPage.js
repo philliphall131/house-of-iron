@@ -57,34 +57,34 @@ const LoginPage = () => {
         <Form noValidate onSubmit={handleSubmit}>
           <div className="form-body">
             <Form.Group className="form-inputs" controlId="formEmail">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control 
-                    type="text" 
-                    name="email"
-                    value={values.email}
-                    placeholder="Enter your email" 
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isInvalid={touched.email && !!errors.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.email}
-                </Form.Control.Feedback>
+              <Form.Label>Email:</Form.Label>
+              <Form.Control 
+                  type="text" 
+                  name="email"
+                  value={values.email}
+                  placeholder="Enter your email" 
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  isInvalid={touched.email && !!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                  {errors.email}
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="form-inputs" controlId="formPassword">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                    type="password" 
-                    name= "password"
-                    value={values.password}
-                    placeholder="Password" 
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isInvalid={touched.password && !!errors.password}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.password}
-                </Form.Control.Feedback>
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                  type="password" 
+                  name= "password"
+                  value={values.password}
+                  placeholder="Password" 
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  isInvalid={touched.password && !!errors.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                  {errors.password}
+              </Form.Control.Feedback>
             </Form.Group>
             <button className="submit-button mt-2" type="submit" disabled={isSubmitting}>
                 Submit
