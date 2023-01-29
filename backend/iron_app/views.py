@@ -85,3 +85,15 @@ class WorkoutViewSet(ModelViewSet):
 class SectionViewSet(ModelViewSet):
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
+
+class ExerciseBaseViewSet(ModelViewSet):
+    queryset = ExerciseBase.objects.all()
+    serializer_class = ExerciseBaseSerializer
+
+class ExerciseViewSet(ModelViewSet):
+    queryset = Exercise.objects.all()
+    serializer_class = ExerciseSerializer
+
+class SetViewSet(ModelViewSet):
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer

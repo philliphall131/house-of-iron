@@ -55,19 +55,24 @@ class Section(models.Model):
     section_type = models.CharField(max_length=255)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='sections')
 
-# class ExerciseBase(models.Model):
-#     name = models.CharField(max_length=255)
-#     # type = models.CharField(max_length=255)
-#     # target body part
-#     description = models.CharField(max_length=255)
+class ExerciseBase(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    description = models.CharField(max_length=255)
+    # type = models.CharField(max_length=255)
+    # target body part
 
-# class Exercise(models.Model):
-#     exercise_base = models.ForeignKey(ExerciseBase, on_delete=models.CASCADE, related_name='exercises')
-#     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='planned_exercises')
+class Exercise(models.Model):
+    exercise_base = models.ForeignKey(ExerciseBase, on_delete=models.CASCADE, related_name='exercises')
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='exercises')
 
-# class Set(models.Model):
-#     reps = models.CharField(max_length=255, null=True, blank=True)
-#     weight = models.DecimalField(max_digits=6, decimal_places=2)
-#     distance = models.DecimalField(max_digits=6, decimal_places=2)
-#     time_secs = models.IntegerField()
-#     planned_exercise = models.ForeignKey(PlannedExercise, on_delete=models.CASCADE, related_name='sets')
+class Set(models.Model):
+    number = models.IntegerField(validators=[MinValueValidator(1)])
+    planned_reps = models.CharField(max_length=255, null=True, blank=True)
+    reps = models.CharField(max_length=255, null=True, blank=True)
+    planned_weight = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    weight = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    planned_distance = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    distance = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    planned_time_secs = models.IntegerField(null=True, blank=True)
+    time_secs = models.IntegerField(null=True, blank=True)
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='sets')

@@ -74,14 +74,12 @@ const EditWorkoutPage = () => {
           <div className="schedule-title text-center my-0">Workout Editor</div>
           <div className="workout-editor-body">
             { renderSections() }
-            <div className="edit-workout-section pb-3">
-              <Button variant="primary" onClick={handleShow}>
-                Add a section
-              </Button>
-            </div>
           </div>
           <div className="save-workout-col my-3">
-            <Button>Save Workout</Button>
+            <Button variant="primary" onClick={handleShow} className="mx-3">
+              Add a section
+            </Button>
+            <Button className="mx-3">Save Workout</Button>
           </div>
           <AddSectionModal show={show} handleClose={handleClose} workoutId={workoutId}/>
         </div>

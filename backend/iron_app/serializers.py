@@ -19,29 +19,44 @@ class UserSerializer(serializers.ModelSerializer):
             validated_data["password"] = make_password(validated_data["password"])
         return super().update(instance, validated_data)
 
+class ExerciseBaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExerciseBase
+        fields = ['id', 'name', 'description']
+
+class SetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Set
+        fields = ['id', 'number', 'planned_reps', 'reps', 'planned_weight', 'weight', 'planned_distance', 'distance', 'planned_time_secs', 'time_secs', 'exercise']
+
+class ExerciseSerializer(serializers.ModelSerializer):
+    sets = SetSerializer(many=True, read_only=True)
+    exercise_base = ExerciseBaseSerializer
+    class Meta:
+        model = Exercise
+        fields = ['id', 'exercise_base', 'section', 'sets']
+
 class SectionSerializer(serializers.ModelSerializer):
+    exercises = ExerciseSerializer(many=True, read_only=True)
     class Meta:
         model = Section
-        fields = ['id', 'section_type', 'workout']
+        fields = ['id', 'section_type', 'workout', 'exercises']
 
 class WorkoutSerializer(serializers.ModelSerializer):
     sections = SectionSerializer(many=True, read_only=True)
     class Meta:
         model = Workout
         fields = ['id', 'name', 'description', 'program_day', "sections"]
-        read_only_fields = ['sections']
 
 class ProgramDaySerializer(serializers.ModelSerializer):
     workouts = WorkoutSerializer(many=True, read_only=True)
     class Meta:
         model = ProgramDay
         fields = ['id', 'program', 'day', 'day_type', 'workouts']
-        read_only_fields = ['workouts']
 
 class ProgramSerializer(serializers.ModelSerializer):
     program_days = ProgramDaySerializer(many=True, read_only=True)
     class Meta:
         model = Program
         fields = ['id', 'name', 'author', 'description','duration_wks','base_program_id','athlete','active','program_days']
-        read_only_fields = ['program_days']
 

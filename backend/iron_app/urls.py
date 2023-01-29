@@ -10,6 +10,9 @@ r.register('programs', ProgramViewSet, basename='program')
 r.register('program_days', ProgramDayViewSet, basename='program_day')
 r.register('workouts', WorkoutViewSet, basename='workout')
 r.register('sections', SectionViewSet, basename='section')
+r.register('exercises', ExerciseViewSet, basename='exercise')
+r.register('exercise_bases', ExerciseBaseViewSet, basename='exercise_base')
+r.register('sets', SetViewSet, basename='set')
 
 urlpatterns = [
     path("", include(r.urls)),
