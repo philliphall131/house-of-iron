@@ -55,15 +55,24 @@ class Section(models.Model):
     section_type = models.CharField(max_length=255)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='sections')
 
+    def __str__(self):
+        return f'{self.section_type}/{self.workout.name}'
+
 class ExerciseBase(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=255)
     # type = models.CharField(max_length=255)
     # target body part
 
+    def __str__(self):
+        return f'{self.name}'
+
 class Exercise(models.Model):
     exercise_base = models.ForeignKey(ExerciseBase, on_delete=models.CASCADE, related_name='exercises')
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='exercises')
+
+    def __str__(self):
+        return f'{self.exercise_base.name} in {self.section.workout.name}/{self.section.section_type}'
 
 class Set(models.Model):
     number = models.IntegerField(validators=[MinValueValidator(1)])
@@ -76,3 +85,6 @@ class Set(models.Model):
     planned_time_secs = models.IntegerField(null=True, blank=True)
     time_secs = models.IntegerField(null=True, blank=True)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='sets')
+
+    def __str__(self):
+        return f'Set {self.number} in {self.exercise_base.name}/{self.section.workout.name}/{self.section.section_type}'

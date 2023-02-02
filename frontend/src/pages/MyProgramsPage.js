@@ -21,7 +21,7 @@ const MyProgramsPage = () => {
         })
     };
     getPrograms()
-  }, [])
+  }, [state.userToken])
 
   return (
     <div>

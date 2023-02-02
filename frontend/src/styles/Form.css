@@ -10,6 +10,11 @@
   min-width: 300px;
 }
 
+.form-inputs2 {
+  margin-bottom: 10px;
+  min-width: 400px;
+}
+
 .submit-button {
 align-items: center;
 appearance: none;

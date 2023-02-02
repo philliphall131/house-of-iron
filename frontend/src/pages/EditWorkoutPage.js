@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import ironAPI from '../utils/ironAPI';
 import '../styles/Form.css';
 import weights from '../assets/weights.jpg';
@@ -22,6 +22,7 @@ const EditWorkoutPage = () => {
   const fetchWorkout = () => {
     ironAPI.getWorkout(workoutId, state.userToken)
       .then((response)=>{
+        console.log(response.data)
         setWorkout(response.data)
       })
   }

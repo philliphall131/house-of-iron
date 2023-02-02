@@ -36,7 +36,7 @@ const ProgramPage = () => {
 
   return (
     <div>
-      <img className="header-pic" src={weights} />
+      <img className="header-pic" src={weights} alt="weights"/>
       <div className="program-title">Hero Program</div>
       <div className="program-body">
         <button className="start-workout">Start Next Workout</button>

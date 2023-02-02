@@ -6,3 +6,5 @@ export { default as ProgramGroup } from './ProgramGroup';
 export { default as ProgramThumbnail } from './ProgramThumbnail';
 export { default as Protected } from './Protected';
 export { default as SignedIn } from './SignedIn';
+export { default as EditorHeader } from './EditorHeader';
+export { default as ExercisePick } from './ExercisePick';

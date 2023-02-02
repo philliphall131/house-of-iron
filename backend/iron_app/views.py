@@ -90,6 +90,18 @@ class ExerciseBaseViewSet(ModelViewSet):
     queryset = ExerciseBase.objects.all()
     serializer_class = ExerciseBaseSerializer
 
+    @action(detail=False, methods=['post'])
+    def check(self, request):
+        try:
+            exercise_check = ExerciseBase.objects.filter(name = request.data)
+            if len(exercise_check) == 0:
+                # return false if exercise does not exist
+                return Response({'exercise_exists':False}, status=status.HTTP_200_OK)
+            # return true if exercise does exist
+            return Response({'user_exists':True}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error':str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
 class ExerciseViewSet(ModelViewSet):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer

@@ -31,7 +31,7 @@ class SetSerializer(serializers.ModelSerializer):
 
 class ExerciseSerializer(serializers.ModelSerializer):
     sets = SetSerializer(many=True, read_only=True)
-    exercise_base = ExerciseBaseSerializer
+    exercise_base = ExerciseBaseSerializer(read_only=True)
     class Meta:
         model = Exercise
         fields = ['id', 'exercise_base', 'section', 'sets']

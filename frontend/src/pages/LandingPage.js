@@ -10,7 +10,7 @@ const LandingPage = () => {
   return (
     <div className="standard-body">
       <div className="main-content">
-      <img className="splash-img" src={splash} />
+      <img className="splash-img" src={splash} alt="splash" />
         { !state.user ?
           <div className='landing-buttons'>
             <Link to={'signup'}>

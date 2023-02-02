@@ -75,4 +75,16 @@ ironAPI.deleteSection = async (id, token) => {
     return await axios.delete(`${BASE_URL}/sections/${id}`, config(token))
 }
 
+ironAPI.getExercise = async (id, token) => {
+    return await axios.get(`${BASE_URL}/exercises/${id}/`, config(token));
+}
+
+ironAPI.getBaseExercises = async (token) => {
+    return await axios.get(`${BASE_URL}/exercise_bases/`, config(token));
+}
+
+ironAPI.checkExerciseBase = async (data, token) => {
+    return await axios.post(`${BASE_URL}/exercise_bases/check/`, data, config(token));
+}
+
 export default ironAPI
