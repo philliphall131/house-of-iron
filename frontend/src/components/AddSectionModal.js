@@ -3,7 +3,6 @@ import { Modal, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
-import '../styles/Form.css';
 import AuthContext from '../utils/AuthContext';
 import ironAPI from '../utils/ironAPI';
 

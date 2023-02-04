@@ -1,10 +1,11 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ironAPI from '../utils/ironAPI';
-import '../styles/Form.css';
-import '../styles/Program.css';
 import AuthContext from '../utils/AuthContext';
 import { EditorHeader, ExercisePick } from '../components/components';
+import * as yup from 'yup';
+import { Formik } from 'formik';
+import { Form } from 'react-bootstrap';
 
 const EditExercisePage = () => {
   const { state } = useContext(AuthContext);
@@ -16,6 +17,21 @@ const EditExercisePage = () => {
       fetchExercise();
     }
   }, [exerciseId, state]);
+
+  const onSubmit = (values)=> {
+    console.log(values)
+    // ironAPI.login(values)
+    //   .then((response)=>{
+    //     dispatch({ type: 'SIGN_IN', data: response.data });
+    //     navigate("/dashboard", { replace: true });
+    //   })
+    //   .catch(error=>{
+    //     setFieldError('general', error.response.data.error)
+    //   })
+    //   .finally(()=>{
+    //     setSubmitting(false)
+    //   })
+  }
 
   const fetchExercise = () => {
     ironAPI.getExercise(exerciseId, state.userToken)

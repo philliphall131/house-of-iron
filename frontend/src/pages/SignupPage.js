@@ -3,7 +3,6 @@ import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
 import ironAPI from '../utils/ironAPI.js';
 import { useNavigate } from "react-router-dom";
-import '../styles/Form.css';
 
 const SignupPage = ({ dispatch }) => {
   let navigate = useNavigate();

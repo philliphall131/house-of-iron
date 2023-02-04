@@ -63,15 +63,17 @@ const ExercisePick = () => {
   };
 
   return (
-    <CreatableSelect
-      isClearable
-      isDisabled={isLoading}
-      isLoading={isLoading}
-      onChange={(newValue) => setValue(newValue)}
-      onCreateOption={handleCreate}
-      options={options}
-      value={value}
-    />
+    <div className="exercise-select">
+      <CreatableSelect
+        isClearable
+        isDisabled={isLoading}
+        isLoading={isLoading}
+        onChange={(newValue) => setValue(newValue)}
+        onCreateOption={handleCreate}
+        options={options}
+        value={value}
+      />
+    </div>
   );
 }
 

@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
 import weights from '../assets/weights.jpg';
-import '../styles/Program.css';
 import { Container } from 'react-bootstrap';
 import ironAPI from '../utils/ironAPI';
 import ProgramGroup from '../components/ProgramGroup';

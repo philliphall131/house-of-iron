@@ -1,4 +1,3 @@
-import '../styles/Workout.css';
 import { Link, useNavigate } from 'react-router-dom';
 
 const WorkoutPage = () => {

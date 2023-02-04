@@ -1,6 +1,5 @@
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../styles/Program.css';
 
 const ProgramThumbnail = ({program}) => {
   return (

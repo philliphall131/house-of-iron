@@ -1,6 +1,5 @@
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../styles/Workout.css';
 import xmark from '../assets/square-xmark.png';
 
 const EditWorkoutSection = ({section, deleteSection}) => {
@@ -16,7 +15,7 @@ const EditWorkoutSection = ({section, deleteSection}) => {
         </div>
       </div>
       <div className="section-body">
-        <Link to={`/exercise/edit/${-1}`}><Button>Add Exercise</Button></Link>
+        <Link to={`/section/edit/${section.id}`}><Button>Edit Exercises in this section</Button></Link>
         
       </div>
     </div>

@@ -1,17 +1,16 @@
+@use '../layout';
+@use '../abstracts';
+
 .dash-body {
-  background-color: #8A9A3C;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include layout.flex-col-center;
+  background-color: abstracts.$primary-green;
+  min-height: layout.$no-scroll-vh;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .dash-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include layout.flex-col-center;
 }
 
 .dash-title {
@@ -54,7 +53,7 @@
 }
 
 .dash-button:hover {
-  box-shadow: rgba(41, 41, 41, 0.747) 0 4px 8px, rgba(60, 60, 60, 0.675) 0 7px 13px -3px, #818633 1px 1px 0;
+  box-shadow: rgba(41, 41, 41, 0.747) 0 4px 8px, rgba(60, 60, 60, 0.675) 0 7px 13px -3px, abstracts.$primary-green 1px 1px 0;
   transform: translateY(-2px);
 }
 

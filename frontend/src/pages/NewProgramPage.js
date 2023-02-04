@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
-import '../styles/Form.css';
 import ironAPI from '../utils/ironAPI';
 
 const NewProgramPage = ({state}) => {

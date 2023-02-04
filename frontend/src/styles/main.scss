@@ -1,0 +1,15 @@
+@import "abstracts";
+@import "layout";
+@import "base";
+
+//pages
+@import "pages/dashboard";
+@import "pages/program";
+@import "pages/section";
+@import "pages/workout";
+
+//components
+@import "components/nav";
+@import "components/form";
+
+

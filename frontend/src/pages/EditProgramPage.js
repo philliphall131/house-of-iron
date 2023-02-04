@@ -1,10 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import '../styles/Form.css';
 import ironAPI from '../utils/ironAPI';
 import weights from '../assets/weights.jpg';
-import '../styles/Program.css';
 import { CreateProgramWeek } from '../components/components';
 import AuthContext from '../utils/AuthContext';
 

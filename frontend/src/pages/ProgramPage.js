@@ -1,5 +1,4 @@
 import weights from '../assets/weights.jpg';
-import '../styles/Program.css';
 import { Link } from 'react-router-dom';
 
 

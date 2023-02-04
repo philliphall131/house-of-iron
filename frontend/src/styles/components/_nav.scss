@@ -1,14 +1,14 @@
+@use '../layout';
+@use '../abstracts';
+
 .my-nav-container {
-  height: 60px;
-  display: flex;
-  flex-direction: row;
+  @include layout.flex-row-center;
+  height: layout.$nav-height;
   background-color: #282c34;
-  align-items: center;
 }
 
 .my-nav-brand {
-  display: flex;
-  align-items: center;
+  @include layout.flex-row;
   padding: 4px;
   margin-left: 10px;
   margin-right: 10px;
@@ -16,8 +16,7 @@
 }
 
 .my-nav {
-  display: flex;
-  flex-direction: row;
+  @include layout.flex-row;
   align-items: center;
   justify-content: right;
   flex: 2;
@@ -33,7 +32,7 @@
   font-weight: 800;
 }
 .brand-text:hover {
-  color: #7b8a34;
+  color: abstracts.$primary-green;
 }
 
 .my-nav-item {
@@ -42,10 +41,10 @@
   color: white;
 }
 .my-nav-item:hover {
-  color: #7b8a34
+  color: abstracts.$primary-green;
 }
 .my-nav-item:active {
-  background-color: #7b8a34;
+  background-color: abstracts.$primary-green;
   border-radius: 5px;
 }
 

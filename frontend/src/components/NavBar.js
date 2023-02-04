@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/NavBar.css';
 import ironAPI from '../utils/ironAPI';
 import AuthContext from '../utils/AuthContext';
 

@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
-import '../styles/Form.css';
 import ironAPI from '../utils/ironAPI';
 import { useNavigate } from "react-router-dom";
 import AuthContext from '../utils/AuthContext';
