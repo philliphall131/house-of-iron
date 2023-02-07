@@ -3,8 +3,14 @@ export { default as CreateProgramWeek } from './CreateProgramWeek'
 export { default as LoadingScreen } from './LoadingScreen';
 export { default as NavBar } from './NavBar';
 export { default as ProgramGroup } from './ProgramGroup';
-export { default as ProgramThumbnail } from './ProgramThumbnail';
+export { default as ProgramCard } from './ProgramCard';
 export { default as Protected } from './Protected';
 export { default as SignedIn } from './SignedIn';
 export { default as EditorHeader } from './EditorHeader';
 export { default as ExercisePick } from './ExercisePick';
+export { default as EditorContainer } from './EditorContainer';
+export { default as EditWorkoutSection } from './EditWorkoutSection';
+export { default as Tabs } from './Tabs';
+export { default as TabContent } from './TabContent';
+export { default as TabNavItem } from './TabNavItem';
+export { default as SectionPane } from './SectionPane';

@@ -1,8 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import weights from '../assets/weights.jpg';
-import { Container } from 'react-bootstrap';
 import ironAPI from '../utils/ironAPI';
-import ProgramGroup from '../components/ProgramGroup';
+import { ProgramGroup, EditorContainer } from '../components/components';
 import AuthContext from '../utils/AuthContext';
 
 const MyProgramsPage = () => {
@@ -23,30 +21,21 @@ const MyProgramsPage = () => {
   }, [state.userToken])
 
   return (
-    <div>
-      <img className="header-pic" src={weights} alt=""/>
-      <div className="program-title">My Programs</div>
-      <div className="program-body mt-0 pt-0">
-        <div className="schedule-body mt-0 pt-0">
-          <div className="schedule-title text-center my-0"></div>
-          <Container className='program-container'>
-            <ProgramGroup
-              title={"My current active program"}
-            />
-            <ProgramGroup
-              title={"Programs I've Made"}
-              programGroup={authoredPrograms}
-            />
-            <ProgramGroup
-              title={"Programs I've done"}
-            />
-            <ProgramGroup
-              title={"Saved Programs"}
-            />            
-          </Container>
-        </div>
-      </div>
-    </div>
+    <EditorContainer title={"My Programs"}>
+      <ProgramGroup
+        title={"My current active program"}
+      />
+      <ProgramGroup
+        title={"Programs I've Made"}
+        programGroup={authoredPrograms}
+      />
+      <ProgramGroup
+        title={"Programs I've done"}
+      />
+      <ProgramGroup
+        title={"Saved Programs"}
+      /> 
+    </EditorContainer>        
   )
 }
 

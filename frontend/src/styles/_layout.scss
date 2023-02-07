@@ -20,3 +20,7 @@ $no-scroll-vh: 100-$nav-height;
   flex-direction: column;
   align-items: center;
 }
+
+.page-container {
+  @include flex-col-center;
+}

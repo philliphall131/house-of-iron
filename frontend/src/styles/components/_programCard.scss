@@ -1,0 +1,48 @@
+@use '../layout';
+@use '../abstracts';
+@use '../base';
+
+.program-card {
+  width: abstracts.$program-card-width;
+  height: abstracts.$program-card-height;
+  @include base.light-border-thin;
+  @include abstracts.marginX(10px);
+  @include abstracts.marginY(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.program-card:hover {
+  height: calc(abstracts.$program-card-height + .5rem);
+  width: calc(abstracts.$program-card-width + .5rem);
+  
+}
+
+.program-card-body {
+  padding: 8px;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.program-card-title {
+  background-color: rgb(206, 206, 206);
+  @include abstracts.paddingY(5px);
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.program-card-subtitle {
+  color: rgb(100, 100, 100);
+  padding-bottom: 4px;
+}
+
+.program-card-text {
+  text-align: center;
+  height: 5rem;
+  width: 100%;
+}
