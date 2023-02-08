@@ -1,5 +1,5 @@
 import { useState, Children } from "react";
-import { TabNavItem, TabContent } from './components';
+import { TabNavItem, TabContent } from '../components';
 
 const Tabs = ({children}) => {
   const [activeTab, setActiveTab] = useState("tab1");

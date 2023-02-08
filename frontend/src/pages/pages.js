@@ -1,12 +1,12 @@
-export { default as Dashboard } from "./Dashboard";
+export { default as Dashboard } from "./app/Dashboard";
 export { default as EditProgramPage } from "./EditProgramPage";
 export { default as EditWorkoutPage } from "./EditWorkoutPage";
-export { default as LandingPage } from "./LandingPage";
-export { default as LoginPage } from "./LoginPage";
+export { default as LandingPage } from "./app/LandingPage";
+export { default as LoginPage } from "./app/LoginPage";
 export { default as MyProgramsPage } from "./MyProgramsPage";
 export { default as NewProgramPage } from "./NewProgramPage";
 export { default as ProgramPage } from "./ProgramPage";
-export { default as SignupPage } from "./SignupPage";
+export { default as SignupPage } from "./app/SignupPage";
 export { default as WorkoutPage } from "./WorkoutPage";
 export { default as EditExercisePage } from "./EditExercisePage";
 export { default as EditSectionPage } from "./EditSectionPage";

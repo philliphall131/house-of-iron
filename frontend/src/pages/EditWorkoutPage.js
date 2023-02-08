@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import ironAPI from '../utils/ironAPI';
 import AuthContext from '../utils/AuthContext';
-import AddSectionModal from '../components/AddSectionModal';
+import AddSectionModal from '../components/workout/AddSectionModal';
 import { EditWorkoutSection, EditorContainer, Tabs, SectionPane } from '../components/components';
 
 const EditWorkoutPage = () => {

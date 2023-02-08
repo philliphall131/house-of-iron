@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AuthContext from '../utils/AuthContext';
+import AuthContext from '../../utils/AuthContext';
 
 const Dashboard = () => {
   const { state } = useContext(AuthContext);

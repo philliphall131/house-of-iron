@@ -3,8 +3,8 @@ import { Modal, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
-import AuthContext from '../utils/AuthContext';
-import ironAPI from '../utils/ironAPI';
+import AuthContext from '../../utils/AuthContext';
+import ironAPI from '../../utils/ironAPI';
 
 const AddSectionModal = ({show, handleClose, workoutId}) => {
   const { state } = useContext(AuthContext);
