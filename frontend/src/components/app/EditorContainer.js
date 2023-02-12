@@ -1,4 +1,4 @@
-import weights from '../assets/weights.jpg';
+import weights from '../../assets/weights.jpg';
 
 const EditorContainer = ({children, title, subtitle}) => {
   return (

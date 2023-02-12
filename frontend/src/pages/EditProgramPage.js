@@ -49,7 +49,7 @@ const EditProgramPage = () => {
         program && 
           <EditorContainer title={program.name} subtitle={"Program Editor"}>
             <Container>
-              <Row className='my-2'>
+              <Row>
                 {program && program.duration_wks > 1 && 
                   <Col className='text-center'><Button variant="outline-dark">Copy Week 1 Template</Button></Col>}
               </Row>

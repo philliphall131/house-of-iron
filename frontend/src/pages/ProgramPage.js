@@ -1,41 +1,42 @@
 import weights from '../assets/weights.jpg';
 import { Link } from 'react-router-dom';
+import { Button } from '../components/components';
 
 
 const ProgramPage = () => {
 
-  const getScheduleDays = () => {
-    let arr = []
-    const days = (num) => {
-      return (
-        <>
-          <Link to="workout" className="link">
-            <div className='program-days' key={`day-${num}`}>
-              <div className="program-day">Day<br/>{`${num}`}</div>
-              <div className="vr"></div>
-              <div className="program-workout">
-                <div>{`Workout 1-${num}`}<br/>Type: Squat/Bench</div> 
-              </div>
-              <div className="vr"></div>
-              <div  className="program-day-complete">
-                <div className="circle"></div>
-                <div className="carrot">{`>`}</div>
-              </div>
-            </div>
-          </Link>
-          <hr/>
-        </>
-      )
-    }
-    for (let i=1; i<16; i++) {
-      arr.push(days(i))
-    }
-    return arr
-  }
+  // const getScheduleDays = () => {
+  //   let arr = []
+  //   const days = (num) => {
+  //     return (
+  //       <>
+  //         <Link to="workout" className="link">
+  //           <div className='program-days' key={`day-${num}`}>
+  //             <div className="program-day">Day<br/>{`${num}`}</div>
+  //             <div className="vr"></div>
+  //             <div className="program-workout">
+  //               <div>{`Workout 1-${num}`}<br/>Type: Squat/Bench</div> 
+  //             </div>
+  //             <div className="vr"></div>
+  //             <div  className="program-day-complete">
+  //               <div className="circle"></div>
+  //               <div className="carrot">{`>`}</div>
+  //             </div>
+  //           </div>
+  //         </Link>
+  //         <hr/>
+  //       </>
+  //     )
+  //   }
+  //   for (let i=1; i<16; i++) {
+  //     arr.push(days(i))
+  //   }
+  //   return arr
+  // }
 
   return (
     <div>
-      <img className="header-pic" src={weights} alt="weights"/>
+      {/* <img className="header-pic" src={weights} alt="weights"/>
       <div className="program-title">Hero Program</div>
       <div className="program-body">
         <button className="start-workout">Start Next Workout</button>
@@ -43,7 +44,49 @@ const ProgramPage = () => {
           <div className="schedule-title">Schedule</div>
           { getScheduleDays() }
         </div>
-      </div>
+      </div> */}
+      <Button 
+        variant={'green'}
+        size={'sm'}
+        onClick={()=>console.log('test')}
+      >
+        Test
+      </Button>
+      <Button 
+        variant={'green'}
+        size={'md'}
+        onClick={()=>console.log('test')}
+      >
+        Test
+      </Button>
+      <Button 
+        variant={'green'}
+        size={'lg'}
+        onClick={()=>console.log('test')}
+      >
+        Test
+      </Button>
+      <Button 
+        variant={'grey'}
+        size={'sm'}
+        onClick={()=>console.log('test')}
+      >
+        Test
+      </Button>
+      <Button 
+        variant={'grey'}
+        size={'md'}
+        onClick={()=>console.log('test')}
+      >
+        Test
+      </Button>
+      <Button 
+        variant={'grey'}
+        size={'lg'}
+        onClick={()=>console.log('test')}
+      >
+        Test
+      </Button>
     </div>
   )
 }

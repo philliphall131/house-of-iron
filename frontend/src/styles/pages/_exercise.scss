@@ -1,0 +1,37 @@
+@use '../layout';
+@use '../abstracts';
+@use '../base';
+
+.exercises-block {
+  text-align: left;
+}
+
+.exercise-table {
+  margin-left: 5vw;
+}
+
+.exercise-container {
+  margin-bottom: 10px;
+}
+
+th.cell, td.cell {
+  border: 1px solid rgb(217, 217, 217);
+  height: 2.5rem;
+  text-align: center;
+}
+
+th.cell {
+  background-color: abstracts.$primary-orange;
+}
+
+.set-col {
+  width: 4rem;
+}
+
+.data-col {
+  width: 7rem;
+}
+
+.rcell {
+  background-color: #e6bd72;
+}

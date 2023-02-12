@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
-import ironAPI from '../utils/ironAPI';
+import ironAPI from '../../utils/ironAPI';
 import { useNavigate } from "react-router-dom";
-import AuthContext from '../utils/AuthContext';
+import AuthContext from '../../utils/AuthContext';
   
 const LoginPage = () => {
   let navigate = useNavigate();
@@ -54,8 +54,8 @@ const LoginPage = () => {
         touched 
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
-          <div className="form-body">
-            <Form.Group className="form-inputs" controlId="formEmail">
+          <div className="form-body-auth">
+            <Form.Group className="form-inputs-auth" controlId="formEmail">
               <Form.Label>Email:</Form.Label>
               <Form.Control 
                   type="text" 
@@ -70,7 +70,7 @@ const LoginPage = () => {
                   {errors.email}
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="form-inputs" controlId="formPassword">
+            <Form.Group className="form-inputs-auth" controlId="formPassword">
               <Form.Label>Password:</Form.Label>
               <Form.Control
                   type="password" 
@@ -85,7 +85,7 @@ const LoginPage = () => {
                   {errors.password}
               </Form.Control.Feedback>
             </Form.Group>
-            <button className="submit-button mt-2" type="submit" disabled={isSubmitting}>
+            <button className="green-button mt-2" type="submit" disabled={isSubmitting}>
                 Submit
             </button>
             <div className="general-error">{errors.general}</div>

@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
-import ironAPI from '../utils/ironAPI.js';
+import ironAPI from '../../utils/ironAPI.js';
 import { useNavigate } from "react-router-dom";
 
 const SignupPage = ({ dispatch }) => {
@@ -51,7 +51,10 @@ const SignupPage = ({ dispatch }) => {
             dispatch({ type: 'SIGN_IN', data: response.data });
             navigate("/dashboard", { replace: true });
           })
-          //TODO: error catch
+          .catch((error)=>{
+            alert('Error logging in after signup')
+            console.log(error)
+          })
         // 
       })
       .catch(error=>{
@@ -87,8 +90,8 @@ const SignupPage = ({ dispatch }) => {
         touched 
       }) => (
         <Form noValidate onSubmit={handleSubmit}>
-            <div className="form-body">
-            <Form.Group className="form-inputs" controlId="formEmail">
+            <div className="form-body-auth">
+            <Form.Group className="form-inputs-auth" controlId="formEmail">
                 <Form.Label>Email:</Form.Label>
                 <Form.Control 
                     type="text" 
@@ -103,7 +106,7 @@ const SignupPage = ({ dispatch }) => {
                     {errors.email}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="form-inputs" controlId="formFirstName">
+            <Form.Group className="form-inputs-auth" controlId="formFirstName">
                 <Form.Label>First Name:</Form.Label>
                 <Form.Control 
                     type="text" 
@@ -118,7 +121,7 @@ const SignupPage = ({ dispatch }) => {
                     {errors.first_name}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="form-inputs" controlId="formLastName">
+            <Form.Group className="form-inputs-auth" controlId="formLastName">
                 <Form.Label>Last Name:</Form.Label>
                 <Form.Control  
                     type="text"
@@ -133,7 +136,7 @@ const SignupPage = ({ dispatch }) => {
                     {errors.last_name}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="form-inputs" controlId="formPassword">
+            <Form.Group className="form-inputs-auth" controlId="formPassword">
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                     type="password" 
@@ -148,7 +151,7 @@ const SignupPage = ({ dispatch }) => {
                     {errors.password}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="form-inputs" controlId="formPassword2">
+            <Form.Group className="form-inputs-auth" controlId="formPassword2">
                 <Form.Label>Confirm Password:</Form.Label>
                 <Form.Control
                     type="password" 
@@ -163,7 +166,7 @@ const SignupPage = ({ dispatch }) => {
                     {errors.password2}
                 </Form.Control.Feedback>
             </Form.Group>
-             <button className="submit-button mt-2" type="submit" disabled={isSubmitting}> 
+             <button className="green-button mt-2" type="submit" disabled={isSubmitting}> 
                 Submit
             </button>
             </div>

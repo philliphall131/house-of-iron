@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import xmark from '../assets/square-xmark.png';
+import xmark from '../../assets/square-xmark.png';
 
 const EditWorkoutSection = ({section, deleteSection}) => {
   return (

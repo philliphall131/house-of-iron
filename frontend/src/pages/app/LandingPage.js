@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import splash from '../assets/splash.png';
-import AuthContext from '../utils/AuthContext';
+import splash from '../../assets/splash.png';
+import AuthContext from '../../utils/AuthContext';
 
 const LandingPage = () => {
   const { state } = useContext(AuthContext);
@@ -13,10 +13,10 @@ const LandingPage = () => {
         { !state.user ?
           <div className='landing-buttons'>
             <Link to={'signup'}>
-              <button className="landing-button">Sign Up</button>
+              <button className="grey-button">Sign Up</button>
             </Link>
             <Link to={'login'}>
-              <button className="landing-button">Login</button>
+              <button className="grey-button">Login</button>
             </Link>
           </div> :
           <div className='landing-buttons'>

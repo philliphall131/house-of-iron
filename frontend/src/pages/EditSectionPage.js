@@ -1,4 +1,4 @@
-import { EditorHeader } from "../components/components"
+import { EditorContainer } from "../components/components"
 import { Form, Table } from "react-bootstrap"
 import { useEffect, useState } from "react";
 
@@ -8,7 +8,7 @@ const EditSectionPage = () => {
 
   return (
     <div>
-      <EditorHeader title={'Section'}/>
+      {/* <EditorHeader title={'Section'}/> */}
       <div className="program-body mt-0 pt-0">
         <div className="schedule-body mt-0 pt-0">
           <div className="schedule-title text-center my-0">Section Editor</div>

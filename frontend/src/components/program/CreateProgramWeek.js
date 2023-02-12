@@ -1,5 +1,5 @@
 import { Row, Col, CardGroup } from 'react-bootstrap';
-import CreateProgramDayCard from '../components/CreateProgramDayCard';
+import { CreateProgramDayCard } from '../components';
 
 const CreateProgramWeek = ({week, program, addWorkout}) => {
   return (

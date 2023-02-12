@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
-import AuthContext from '../utils/AuthContext';
+import AuthContext from '../../utils/AuthContext';
 
 const Protected = ({page}) => {
     const { state } = useContext(AuthContext);

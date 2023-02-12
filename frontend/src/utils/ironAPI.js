@@ -87,4 +87,8 @@ ironAPI.checkExerciseBase = async (data, token) => {
     return await axios.post(`${BASE_URL}/exercise_bases/check/`, data, config(token));
 }
 
+ironAPI.updateWorkout = async (id, data, token) => {
+    return await axios.patch(`${BASE_URL}/workouts/${id}/`, data, config(token));
+}
+
 export default ironAPI

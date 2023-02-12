@@ -1,4 +1,4 @@
-import { ProgramCard } from './components';
+import { ProgramCard } from '../components';
 
 const ProgramGroup = ({title, programGroup}) => {
 

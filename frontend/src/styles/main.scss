@@ -2,11 +2,12 @@
 @import "layout";
 @import "base";
 
-//pages
+//pages/types
 @import "pages/dashboard";
 @import "pages/program";
 @import "pages/section";
 @import "pages/workout";
+@import "pages/exercise";
 
 //components
 @import "components/nav";
@@ -14,4 +15,5 @@
 @import "components/editorContainer";
 @import "components/programCard";
 @import "components/tabs";
+@import "components/buttons";
 

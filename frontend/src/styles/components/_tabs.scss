@@ -10,12 +10,14 @@
   align-items: stretch;
 }
 
-// .tab-content {
-//   flex-grow: 4;
-// }
+.tab-content {
+  flex-grow: 4;
+  padding: 10px;
+}
 
 .tab-nav-container{
-  width: 175px;
+  flex-grow: 1;
+  min-width: 160px !important;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -41,18 +43,19 @@ ul.tab-nav li {
   height: 40px;
   text-align: center;
   transition: all 0.3s;
-  background-color: abstracts.$primary-green;
+  background-color: abstracts.$primary-grey;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: white 1px solid;
+  cursor: pointer;
 }
 
 ul.tab-nav li:hover {
-  background: rgb(195, 127, 0);
+  background: grey;
 }
 
 ul.tab-nav li.active {
-  background: rgb(217, 141, 0);
+  background: abstracts.$primary-green;
 }
 

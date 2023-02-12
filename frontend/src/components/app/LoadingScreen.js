@@ -1,4 +1,4 @@
-import splash from '../assets/splash.png';
+import splash from '../../assets/splash.png';
 
 const LoadingScreen = () => {
   return (

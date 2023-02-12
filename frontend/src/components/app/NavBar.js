@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import ironAPI from '../utils/ironAPI';
-import AuthContext from '../utils/AuthContext';
+import ironAPI from '../../utils/ironAPI';
+import AuthContext from '../../utils/AuthContext';
 
 const NavBar = () => {
   const { state, dispatch } = useContext(AuthContext);
