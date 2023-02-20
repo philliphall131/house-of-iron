@@ -13,6 +13,7 @@ r.register('sections', SectionViewSet, basename='section')
 r.register('exercises', ExerciseViewSet, basename='exercise')
 r.register('exercise_bases', ExerciseBaseViewSet, basename='exercise_base')
 r.register('sets', SetViewSet, basename='set')
+r.register('set_schema', SetSchemaViewSet, basename='set_schema')
 
 urlpatterns = [
     path("", include(r.urls)),

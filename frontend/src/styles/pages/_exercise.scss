@@ -6,12 +6,14 @@
   text-align: left;
 }
 
-.exercise-table {
-  margin-left: 5vw;
+.exercise-table-container {
+  display: flex;
+  justify-content: center;
 }
 
 .exercise-container {
   margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 th.cell, td.cell {

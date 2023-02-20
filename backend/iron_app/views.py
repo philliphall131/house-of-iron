@@ -106,6 +106,22 @@ class ExerciseViewSet(ModelViewSet):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+
+        #after creating the exercise, create its set schema and associate the two
+        new_exercise = Exercise.objects.get(id=serializer.instance.id)
+        SetSchema.objects.create(exercise=new_exercise)
+        
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 class SetViewSet(ModelViewSet):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
+
+class SetSchemaViewSet(ModelViewSet):
+    queryset = Set.objects.all()
+    serializer_class = SetSchemaSerializer

@@ -1,3 +1,12 @@
+@use '../../layout';
+@use '../../abstracts';
+@use '../../base';
+
+form {
+  height: 100%;
+  width: 100%;
+}
+
 .form-body {
   display: flex;
   flex-direction: column;
@@ -24,6 +33,27 @@
   min-width: 300px;
 }
 
+.section-pane-inputs {
+  flex-grow: 1;
+}
+
+.section-title-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.form-input-section-title {
+  width: 40%;
+}
+
+.centered-input {
+  text-align: center;
+}
+
 // .form-inputs2 {
 //   margin-bottom: 10px;
 //   min-width: 400px;
@@ -44,4 +74,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.exercise-select {
+  width: 200px;
+  @include abstracts.paddingY(5px);
+}
+
+.exercise-select-container {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  margin-right: 5px;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: center;
 }

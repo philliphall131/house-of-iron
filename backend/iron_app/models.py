@@ -70,21 +70,40 @@ class ExerciseBase(models.Model):
 class Exercise(models.Model):
     exercise_base = models.ForeignKey(ExerciseBase, on_delete=models.CASCADE, related_name='exercises')
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='exercises')
+    is_reps = models.BooleanField(default=False)
+    is_weight = models.BooleanField(default=False)
+    is_distance = models.BooleanField(default=False)
+    is_time = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.exercise_base.name} in {self.section.workout.name}/{self.section.section_type}'
 
+class SetSchema(models.Model):
+    exercise = models.OneToOneField(Exercise, on_delete=models.CASCADE, related_name='set_schema')
+    is_reps = models.BooleanField(default=False)
+    is_weight = models.BooleanField(default=False)
+    is_distance = models.BooleanField(default=False)
+    is_time = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return f'Set Schema for {self.exercise}'
+
 class Set(models.Model):
+    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='sets')
     number = models.IntegerField(validators=[MinValueValidator(1)])
-    planned_reps = models.CharField(max_length=255, null=True, blank=True)
-    reps = models.CharField(max_length=255, null=True, blank=True)
-    planned_weight = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    weight = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    planned_distance = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    distance = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    planned_reps = models.IntegerField(validators=[MinValueValidator(0)], null=True, blank=True, default=0)
+    reps = models.IntegerField(validators=[MinValueValidator(0)], null=True, blank=True, default=0)
+    planned_weight = models.IntegerField(validators=[MinValueValidator(0)], null=True, blank=True, default=0)
+    weight = models.IntegerField(validators=[MinValueValidator(0)], null=True, blank=True, default=0)
+    planned_distance = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, default=0)
+    distance = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, default=0)
     planned_time_secs = models.IntegerField(null=True, blank=True)
     time_secs = models.IntegerField(null=True, blank=True)
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, related_name='sets')
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['exercise','number'], name='unique_set_number'),
+        ]
 
     def __str__(self):
-        return f'Set {self.number} in {self.exercise_base.name}/{self.section.workout.name}/{self.section.section_type}'
+        return f'Set {self.number} in {self.exercise.exercise_base.name}/{self.exercise.section.workout.name}/{self.exercise.section.section_type}'

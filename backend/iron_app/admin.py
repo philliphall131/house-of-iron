@@ -39,4 +39,4 @@ class ProgramAdmin(admin.ModelAdmin):
 
 admin.site.register(User, AppUserAdmin)
 admin.site.register(Program, ProgramAdmin)
-admin.site.register([ProgramDay, Workout, Section, Exercise, ExerciseBase, Set])
+admin.site.register([ProgramDay, Workout, Section, Exercise, ExerciseBase, Set, SetSchema])

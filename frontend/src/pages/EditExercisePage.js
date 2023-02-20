@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ironAPI from '../utils/ironAPI';
 import AuthContext from '../utils/AuthContext';
-import { EditorContainer, ExercisePick } from '../components/components';
+import { EditorContainer } from '../components/components';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { Form } from 'react-bootstrap';
@@ -51,7 +51,7 @@ const EditExercisePage = () => {
         <div className="schedule-body mt-0 pt-0">
           <div className="schedule-title text-center my-0">Exercise Editor</div>
           <div className="workout-editor-body">
-            <ExercisePick />
+            
           </div>
         </div>
       </div>

@@ -11,7 +11,9 @@
 
 //components
 @import "components/nav";
-@import "components/form";
+@import "components/form/form";
+@import "components/form/toggleSwitch";
+@import "components/form/exerciseTableInput";
 @import "components/editorContainer";
 @import "components/programCard";
 @import "components/tabs";

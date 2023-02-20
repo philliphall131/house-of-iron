@@ -29,33 +29,39 @@ class SetSerializer(serializers.ModelSerializer):
         model = Set
         fields = ['id', 'number', 'planned_reps', 'reps', 'planned_weight', 'weight', 'planned_distance', 'distance', 'planned_time_secs', 'time_secs', 'exercise']
 
+class SetSchemaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SetSchema
+        fields = ['id', 'exercise', 'is_reps', 'is_weight', 'is_distance', 'is_time']
+
 class ExerciseSerializer(serializers.ModelSerializer):
-    sets = SetSerializer(many=True, read_only=True)
-    exercise_base = ExerciseBaseSerializer(read_only=True)
+    sets = SetSerializer(many=True)
+    exercise_base = ExerciseBaseSerializer()
+    set_schema = SetSchemaSerializer()
     class Meta:
         model = Exercise
-        fields = ['id', 'exercise_base', 'section', 'sets']
+        fields = ['id', 'exercise_base', 'section', 'sets', 'set_schema'] 
 
 class SectionSerializer(serializers.ModelSerializer):
-    exercises = ExerciseSerializer(many=True, read_only=True)
+    exercises = ExerciseSerializer(many=True)
     class Meta:
         model = Section
         fields = ['id', 'section_type', 'workout', 'exercises']
 
 class WorkoutSerializer(serializers.ModelSerializer):
-    sections = SectionSerializer(many=True, read_only=True)
+    sections = SectionSerializer(many=True)
     class Meta:
         model = Workout
         fields = ['id', 'name', 'description', 'program_day', "sections"]
 
 class ProgramDaySerializer(serializers.ModelSerializer):
-    workouts = WorkoutSerializer(many=True, read_only=True)
+    workouts = WorkoutSerializer(many=True)
     class Meta:
         model = ProgramDay
         fields = ['id', 'program', 'day', 'day_type', 'workouts']
 
 class ProgramSerializer(serializers.ModelSerializer):
-    program_days = ProgramDaySerializer(many=True, read_only=True)
+    program_days = ProgramDaySerializer(many=True)
     class Meta:
         model = Program
         fields = ['id', 'name', 'author', 'description','duration_wks','base_program_id','athlete','active','program_days']

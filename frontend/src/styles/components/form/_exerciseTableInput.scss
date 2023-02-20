@@ -1,0 +1,25 @@
+@use '../../layout';
+@use '../../abstracts';
+@use '../../base';
+
+.table-input {
+  background-color: white;
+  border: none;
+  width: 5rem;
+  text-align: center;
+}
+
+.table-header-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include abstracts.paddingY(5px)
+}
+
+.cell-disabled {
+  background-color: rgb(236, 236, 236);
+}
+
+
+
+

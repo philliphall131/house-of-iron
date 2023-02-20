@@ -6,7 +6,8 @@ const SectionPane = ({section, fetchWorkout}) => {
 
   return (
     <>
-      { edit ?
+      {
+        edit ?
         <EditSectionPane setEdit={setEdit} section={section} fetchWorkout={fetchWorkout}/> :
         <DisplaySectionPane setEdit={setEdit} section={section}/>
       }

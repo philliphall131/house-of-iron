@@ -6,7 +6,7 @@ const CreateProgramDayCard = ({day, addWorkout}) => {
 
   return (
     <Card style={{ width: '10rem' }}>
-      <Card.Body>
+      <Card.Body className="px-0">
         <Card.Title>Day {day && day.day}</Card.Title>
         {/* <Card.Subtitle>Type:</Card.Subtitle> */}
         {/* <Card.Text className="mb-0">{day && day.day_type}</Card.Text> */}
