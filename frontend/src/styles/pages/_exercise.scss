@@ -14,7 +14,16 @@
 .exercise-container {
   margin-bottom: 10px;
   padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: top;
 }
+.exercise-table-buttons {
+  display: flex;
+  flex-direction: column;
+  @include abstracts.marginX(5px)
+}
+
 
 th.cell, td.cell {
   border: 1px solid rgb(217, 217, 217);

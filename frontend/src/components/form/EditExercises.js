@@ -16,16 +16,18 @@ const EditExercises = ({name, value, updateData}) => {
   }
 
   return (
-    <>
-      <EditExercise 
-        name={"0"}
-        value={exercisesData[0]}
-        updateExercisesData={updateExercisesData}
-      />
-      <div>
-        
-      </div>
-    </>
+    <div className="exercises-block">
+      {
+        exercisesData.map((exercise, index)=>(
+          <EditExercise
+            key={`ee${index}`}
+            name={index}
+            value={exercise}
+            updateExercisesData={updateExercisesData}
+          />
+        ))
+      }
+    </div>
   )
 }
 

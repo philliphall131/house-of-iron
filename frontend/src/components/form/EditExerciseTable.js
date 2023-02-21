@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TableInput, ToggleSwitch, EditExerciseRow } from '../components';
+import { TableInput, ToggleSwitch, EditExerciseRow, Button, IconButton } from '../components';
 
 const EditExerciseTable = ({exercise, updateExercise}) => {
   const [sets, setSets] = useState(exercise.sets.sort((a,b)=>{return a.number-b.number}))
@@ -12,7 +12,7 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
 
   useEffect(()=>{
     updateExercise('sets', sets)
-  }, [JSON.stringify(sets)])
+  }, [sets, JSON.stringify(sets)])
 
   const updateChecked = (key) =>{
     setChecked({
@@ -27,6 +27,28 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
   const updateRow = (id, val) => {
     let newSets = sets
     newSets[id] = val
+    setSets(newSets)
+  }
+
+  const addRow = () => {
+    let newSet = {
+      exercise: sets[0] && (sets[0].exercise ? sets[0].exercise : -1),
+      number: sets.length + 1,
+      reps: null,
+      planned_reps: null,
+      weight: null,
+      planned_weight: null,
+      distance: null,
+      planned_distance: null,
+      time_secs: null,
+      planned_time_secs: null
+    }
+    setSets([...sets, newSet])
+  }
+
+  const removeRow = () => {
+    let newSets = [...sets]
+    newSets.pop()
     setSets(newSets)
   }
 
@@ -102,6 +124,11 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
           </tbody>
         </table>
       </div>
+      <div className='exercise-table-buttons'>
+        <IconButton type='plus' onClick={addRow} />
+        <IconButton type='minus' onClick={removeRow} />
+      </div>
+      
     </div>
   )
 }

@@ -27,4 +27,5 @@ export { default as EditExercise } from './form/EditExercise';
 export { default as ToggleSwitch } from './form/ToggleSwitch';
 export { default as EditExerciseRow } from './form/EditExerciseRow';
 export { default as EditExercises } from './form/EditExercises';
+export { default as IconButton } from './app/IconButton';
 

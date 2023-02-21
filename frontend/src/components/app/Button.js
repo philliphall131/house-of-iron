@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const Button = ({children, onClick, variant, size, type='button'}) => {
   const [bkColor, setBkColor] = useState('#8A9A3C');
-  const [color, setColor] = useState('white')
+  const [color, setColor] = useState('black')
   const [ftSize, setFtSize] = useState(18);
   const [paddingX, setPaddingX] = useState('1rem')
   const [paddingY, setPaddingY] = useState('.2rem')
@@ -15,8 +15,8 @@ const Button = ({children, onClick, variant, size, type='button'}) => {
         setColor('black')
         break;
       case 'grey':
-        setBkColor('#595959')
-        setColor('white')
+        setBkColor('#c2c2c2')
+        setColor('black')
         break;
       case 'orange':
         setBkColor('#d38a01')
@@ -28,19 +28,19 @@ const Button = ({children, onClick, variant, size, type='button'}) => {
         setFtSize('12px')
         setPaddingX('0.6rem')
         setPaddingY('0.1rem')
-        setWidth('50px')
+        // setWidth('50px')
         break;
       case 'md':
         setFtSize('18px')
         setPaddingX('1rem')
         setPaddingY('0.2rem')
-        setWidth('75px')
+        // setWidth('75px')
         break;
       case 'lg':
         setFtSize('24px')
         setPaddingX('1.6rem')
         setPaddingY('.3rem')
-        setWidth('100px')
+        // setWidth('100px')
         break;
     }
   },[variant, size])
@@ -58,7 +58,7 @@ const Button = ({children, onClick, variant, size, type='button'}) => {
         paddingRight: paddingX,
         paddingTop: paddingY,
         paddingBottom: paddingY,
-        width: width,
+        // width: width,
       }}
     >
       {children}
