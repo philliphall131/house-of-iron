@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { Button, TextInput, EditExercises } from '../components';
 import AuthContext from '../../utils/AuthContext';
+import _ from 'lodash';
+import ironAPI from '../../utils/ironAPI';
 
 const EditSectionPane = ({setEdit, section, fetchWorkout}) => {
   const { state } = useContext(AuthContext);
-  const initialValues = section ? section : sectionShape()
+  const initialValues = section ? _.cloneDeep(section) : sectionShape()
   const [data, setData] = useState(initialValues)
 
   const sectionShape = () => {
@@ -46,36 +48,45 @@ const EditSectionPane = ({setEdit, section, fetchWorkout}) => {
     setData(newData)
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = () => {
     console.log("form data:", data)
+    let sectionData = {
+      section_type: data.section_type,
+      description: data.description
+    }
+    ironAPI.updateSection(data.id, sectionData, state.userToken)
+      .then(()=>{
+        fetchWorkout()
+      })
+      .catch((error)=>{
+        alert('Issue with update section on save')
+        console.log(error)
+      })
   }
 
   return (
     <div className="section-pane">
       {data &&
-        <form onSubmit={handleSubmit}>
-          <div className="section-pane-inputs">
-            <TextInput
-              name="section_type"
-              type="text" 
-              label="Section"
-              className="section-title-input"
-              value={data.section_type}
-              updateData={updateData}
-            />
-            <EditExercises 
-              name="exercises"
-              value={data.exercises}
-              updateData={updateData}
-            />
-            <div className='form-footer'>
-              <Button variant="green" type="submit" disabled={false}>
-                  Save
-              </Button>
-            </div> 
-          </div>
-        </form>
+        <div className="section-pane-inputs">
+          <TextInput
+            name="section_type"
+            type="text" 
+            label="Section"
+            className="section-title-input"
+            valu={data.section_type}
+            updateData={updateData}
+          />
+          <EditExercises 
+            name="exercises"
+            value={data.exercises}
+            updateData={updateData}
+          />
+          <div className='form-footer'>
+            <Button variant="green" onClick={handleSubmit} disabled={false}>
+                Save
+            </Button>
+          </div> 
+        </div>
       }
     </div>
   )

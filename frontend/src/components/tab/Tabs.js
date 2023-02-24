@@ -1,7 +1,7 @@
 import { useState, Children } from "react";
-import { TabNavItem, TabContent } from '../components';
+import { TabNavItem, TabContent, IconButton } from '../components';
 
-const Tabs = ({children}) => {
+const Tabs = ({children, addTab, removeTab}) => {
   const [activeTab, setActiveTab] = useState("tab1");
   const arrayChildren = Children.toArray(children);
 
@@ -12,11 +12,21 @@ const Tabs = ({children}) => {
           {Children.map(arrayChildren, (child, i) => {
             const { title } = child.props
             return (
-              <TabNavItem title={title} id={`tab${i+1}`} activeTab={activeTab} setActiveTab={setActiveTab}/>
+              <TabNavItem 
+                title={title} 
+                id={`tab${i+1}`} 
+                activeTab={activeTab} 
+                setActiveTab={setActiveTab}
+                removeTab={()=>removeTab(i)}
+              />
             )
           })}
         </ul>
-        <div className="tab-nav-filler"> </div>
+        <div className="tab-nav-filler">
+          <div className="tab-add-button">
+            <IconButton onClick={addTab} bkColor={'#e7e7e7'} />
+          </div>
+        </div>
       </div>
       
       <div className="tab-content">

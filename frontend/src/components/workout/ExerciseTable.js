@@ -1,8 +1,8 @@
 
-const ExerciseTable = ({num, exercise}) => {
+const ExerciseTable = ({exercise}) => {
   return (
     <div className='exercise-container'>
-      <h6>{num}. {exercise.exercise_base.name}</h6>
+      <h6>{exercise.number}. {exercise.exercise_base.name}</h6>
       <div className="exercise-table-container">
       <table className="exercise-table">
         <thead>
@@ -15,7 +15,7 @@ const ExerciseTable = ({num, exercise}) => {
           </tr>
         </thead>
         <tbody>
-          {exercise.sets.sort((a,b)=>{return a.number-b.number}).map((set, index)=>(
+          {exercise.sets.map((set, index)=>(
             <tr key={`es${index}`}>
               <td className="cell rcell">{set.number}</td>
               <td className="cell">{set.planned_reps}</td>

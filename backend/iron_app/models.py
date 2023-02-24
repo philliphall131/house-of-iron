@@ -47,6 +47,12 @@ class Workout(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     program_day = models.ForeignKey(ProgramDay, on_delete=models.CASCADE, related_name="workouts")
     description = models.CharField(max_length=255, null=True, blank=True)
+    number = models.IntegerField(validators=[MinValueValidator(1)])
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['program_day','number'], name='unique_workout_number'),
+        ]
 
     def __str__(self):
         return f'{self.name}' if self.name else f'Workout Object ({self.pk})'
@@ -54,6 +60,13 @@ class Workout(models.Model):
 class Section(models.Model):
     section_type = models.CharField(max_length=255)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE, related_name='sections')
+    description = models.TextField(blank=True, null=True)
+    number = models.IntegerField(validators=[MinValueValidator(1)])
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['workout','number'], name='unique_section_number'),
+        ]
 
     def __str__(self):
         return f'{self.section_type}/{self.workout.name}'
@@ -70,10 +83,12 @@ class ExerciseBase(models.Model):
 class Exercise(models.Model):
     exercise_base = models.ForeignKey(ExerciseBase, on_delete=models.CASCADE, related_name='exercises')
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='exercises')
-    is_reps = models.BooleanField(default=False)
-    is_weight = models.BooleanField(default=False)
-    is_distance = models.BooleanField(default=False)
-    is_time = models.BooleanField(default=False)
+    number = models.IntegerField(validators=[MinValueValidator(1)])
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['section','number'], name='unique_exercise_number'),
+        ]
 
     def __str__(self):
         return f'{self.exercise_base.name} in {self.section.workout.name}/{self.section.section_type}'

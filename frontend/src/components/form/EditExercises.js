@@ -16,7 +16,7 @@ const EditExercises = ({name, value, updateData}) => {
   }
 
   return (
-    <div className="exercises-block">
+    <div className="edit-exercises-container">
       {
         exercisesData.map((exercise, index)=>(
           <EditExercise

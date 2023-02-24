@@ -8,8 +8,6 @@ const CreateProgramDayCard = ({day, addWorkout}) => {
     <Card style={{ width: '10rem' }}>
       <Card.Body className="px-0">
         <Card.Title>Day {day && day.day}</Card.Title>
-        {/* <Card.Subtitle>Type:</Card.Subtitle> */}
-        {/* <Card.Text className="mb-0">{day && day.day_type}</Card.Text> */}
         { day.workouts.length ?
           day.workouts.map((workout, i)=>{
             if (!workout.name){

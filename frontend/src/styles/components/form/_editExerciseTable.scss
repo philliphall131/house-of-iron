@@ -1,0 +1,41 @@
+@use '../../layout';
+@use '../../abstracts';
+@use '../../base';
+
+.edit-exercise-table-container {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: top;
+}
+
+.exercise-table-buttons {
+  display: flex;
+  flex-direction: column;
+  @include abstracts.marginX(5px)
+}
+
+
+th.cell, td.cell {
+  border: 1px solid rgb(217, 217, 217);
+  height: 2.5rem;
+  text-align: center;
+}
+
+th.cell {
+  background-color: abstracts.$primary-orange;
+}
+
+.set-col {
+  width: 4rem;
+}
+
+.data-col {
+  width: 7rem;
+}
+
+.rcell {
+  background-color: #e6bd72;
+}
+

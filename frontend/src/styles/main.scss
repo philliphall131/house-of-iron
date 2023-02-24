@@ -9,13 +9,19 @@
 @import "pages/workout";
 @import "pages/exercise";
 
-//components
+/// components
 @import "components/nav";
-@import "components/form/form";
-@import "components/form/toggleSwitch";
-@import "components/form/exerciseTableInput";
 @import "components/editorContainer";
 @import "components/programCard";
 @import "components/tabs";
 @import "components/buttons";
 
+// form components
+@import "components/form/form";
+@import "components/form/toggleSwitch";
+@import "components/form/exerciseTableInput";
+@import "components/form/editExercises";
+@import "components/form/editExerciseTable";
+
+// tab components
+@import "components/tab/displaySectionPane";

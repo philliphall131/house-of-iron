@@ -40,19 +40,20 @@ class ExerciseSerializer(serializers.ModelSerializer):
     set_schema = SetSchemaSerializer()
     class Meta:
         model = Exercise
-        fields = ['id', 'exercise_base', 'section', 'sets', 'set_schema'] 
+        fields = ['id', 'exercise_base', 'number', 'section', 'sets', 'set_schema'] 
 
 class SectionSerializer(serializers.ModelSerializer):
-    exercises = ExerciseSerializer(many=True)
+    exercises = ExerciseSerializer(many=True, read_only=True)
     class Meta:
         model = Section
-        fields = ['id', 'section_type', 'workout', 'exercises']
+        fields = ['id', 'section_type', 'workout', 'number', 'description', 'exercises']
+        read_only_fields = ['exercises']
 
 class WorkoutSerializer(serializers.ModelSerializer):
     sections = SectionSerializer(many=True)
     class Meta:
         model = Workout
-        fields = ['id', 'name', 'description', 'program_day', "sections"]
+        fields = ['id', 'name', 'number', 'description', 'program_day', "sections"]
 
 class ProgramDaySerializer(serializers.ModelSerializer):
     workouts = WorkoutSerializer(many=True)

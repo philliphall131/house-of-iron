@@ -1,10 +1,10 @@
 import { ExerciseTable, Button } from '../components';
 
 const DisplaySectionPane = ({section, setEdit}) => {
-
+  
   return (
     section &&
-    <div className="section-pane">
+    <div className="display-section-pane">
       <div className="section-pane-title">
         <div className='section-empty-block'></div>
         <h5 className='section-title'>{section.section_type}</h5>
@@ -14,10 +14,9 @@ const DisplaySectionPane = ({section, setEdit}) => {
       </div>
       <div className='exercises-block'>
         {section.exercises.map((exercise, index)=>(
-          <ExerciseTable 
-            num={index+1} 
+          <ExerciseTable
             exercise={exercise}
-            key={`et${index}`}
+            key={`ext${index}`}
           />
         ))}
       </div>

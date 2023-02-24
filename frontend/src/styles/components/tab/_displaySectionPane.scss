@@ -1,0 +1,58 @@
+@use '../../layout';
+@use '../../abstracts';
+@use '../../base';
+
+.display-section-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+}
+
+.section-pane-title {
+  display: flex;
+  height: 2.5rem;
+  align-items: stretch;
+  padding-bottom: 10px;
+}
+
+.section-empty-block {
+  width: 35%;
+}
+
+.title-right-block {
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.section-title {
+  width: 30%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2rem;
+}
+
+.exercises-block {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.exercise-container {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: top;
+  padding-top: 10px;
+  border-top: 1px grey solid;
+}
+
+.exercise-table-container {
+  display: flex;
+  justify-content: center;
+}

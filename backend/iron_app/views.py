@@ -68,11 +68,11 @@ class ProgramViewSet(ModelViewSet):
         return Response(serializer.data)
 
 class ProgramDayViewSet(ModelViewSet):
-    queryset = ProgramDay.objects.all()
+    queryset = ProgramDay.objects.order_by('day')
     serializer_class = ProgramDaySerializer
 
 class WorkoutViewSet(ModelViewSet):
-    queryset = Workout.objects.all()
+    queryset = Workout.objects.order_by('number')
     serializer_class = WorkoutSerializer
 
     def create(self, request, *args, **kwargs):
@@ -83,8 +83,11 @@ class WorkoutViewSet(ModelViewSet):
         return super().create(request, *args, **kwargs)
 
 class SectionViewSet(ModelViewSet):
-    queryset = Section.objects.all()
+    queryset = Section.objects.order_by('number')
     serializer_class = SectionSerializer
+
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
 
 class ExerciseBaseViewSet(ModelViewSet):
     queryset = ExerciseBase.objects.all()
@@ -103,7 +106,7 @@ class ExerciseBaseViewSet(ModelViewSet):
             return Response({'error':str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class ExerciseViewSet(ModelViewSet):
-    queryset = Exercise.objects.all()
+    queryset = Exercise.objects.order_by('number')
     serializer_class = ExerciseSerializer
 
     def create(self, request, *args, **kwargs):
@@ -119,7 +122,7 @@ class ExerciseViewSet(ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 class SetViewSet(ModelViewSet):
-    queryset = Set.objects.all()
+    queryset = Set.objects.order_by('number')
     serializer_class = SetSerializer
 
 class SetSchemaViewSet(ModelViewSet):

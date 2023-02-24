@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react"
 
-const TableInput = ({name, value, updateRowData, disabled}) => {
+const TableInput = ({name, value, updateRowData, disabled, type}) => {
   const [inputValue, setInputValue] = useState(value ? value : "")
 
   useEffect(() => {
     updateRowData(name, inputValue)
   }, [inputValue])
-  
 
+  useEffect(() => {
+    if(disabled){
+      setInputValue("")
+    }
+    
+  }, [disabled])
+  
   const handleChange = (e) => {
     setInputValue(e.target.value)
   }

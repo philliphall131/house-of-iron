@@ -11,6 +11,7 @@ const EditExercise = ({name, value, updateExercisesData}) => {
   const updateExercise = (subName, val) => {
     let newData = exerciseValues
     newData[subName] = val
+    setExerciseValues(newData)
   }
 
   return (

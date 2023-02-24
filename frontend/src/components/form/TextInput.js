@@ -1,9 +1,16 @@
+import { useState, useEffect } from "react";
 
-const TextInput = ({ label, className, name, placeholder, value, updateData }) => {
+
+const TextInput = ({ label, className, name, placeholder, valu, updateData }) => {
+  const [val, setVal] = useState(valu)
+
+  useEffect(() => {
+    updateData(name, val)
+  }, [val])
+  
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    updateData(name, value)
+    setVal(e.target.value)
   }
 
   return (
@@ -15,7 +22,7 @@ const TextInput = ({ label, className, name, placeholder, value, updateData }) =
         name={name}
         type="text"
         placeholder={placeholder}
-        value={value}
+        value={val}
         onChange={handleChange}
       />
     </div>

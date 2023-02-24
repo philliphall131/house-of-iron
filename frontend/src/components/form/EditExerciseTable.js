@@ -12,7 +12,13 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
 
   useEffect(()=>{
     updateExercise('sets', sets)
-  }, [sets, JSON.stringify(sets)])
+  }, [JSON.stringify(sets)])
+
+  useEffect(()=>{
+    if (sets.length == 0){
+      addRow()
+    }
+  },[])
 
   const updateChecked = (key) =>{
     setChecked({
@@ -47,13 +53,15 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
   }
 
   const removeRow = () => {
-    let newSets = [...sets]
-    newSets.pop()
-    setSets(newSets)
+    if (sets.length > 1) {
+      let newSets = [...sets]
+      newSets.pop()
+      setSets(newSets)
+    }
   }
 
   return (
-    <div className='exercise-container'>
+    <div className='edit-exercise-table-container'>
       <div className="exercise-table-container">
         <table className="exercise-table">
           <thead>
@@ -113,7 +121,7 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
             { 
               sets.map((set, index)=>(
                 <EditExerciseRow 
-                  key={`eer${index}`}
+                  key={`${set.id}eer${index}`}
                   id={index}
                   set={set}
                   checked={checked} 
