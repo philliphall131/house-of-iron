@@ -1,8 +1,8 @@
 import { useState, Children } from "react";
 import { TabNavItem, TabContent, IconButton } from '../components';
 
-const Tabs = ({children, addTab, removeTab}) => {
-  const [activeTab, setActiveTab] = useState("tab1");
+const Tabs = ({children, addTab, removeTab, activeTab, setActiveTab}) => {
+  // const [activeTab, setActiveTab] = useState('tab1');
   const arrayChildren = Children.toArray(children);
 
   return (

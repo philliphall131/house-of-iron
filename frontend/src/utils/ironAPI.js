@@ -76,10 +76,16 @@ ironAPI.deleteSection = async (id, token) => {
 ironAPI.updateSection = async (id, data, token) => {
     return await axios.patch(`${BASE_URL}/sections/${id}/`, data, config(token))
 }
+ironAPI.createOrUpdateSection = async (id, data, token) => {
+    return await axios.post(`${BASE_URL}/sections/${id}/create_or_update/`, data, config(token));
+}
 
 //Exercise
 ironAPI.getExercise = async (id, token) => {
     return await axios.get(`${BASE_URL}/exercises/${id}/`, config(token));
+}
+ironAPI.createOrUpdateExercise = async (id, data, token) => {
+    return await axios.post(`${BASE_URL}/exercises/${id}/create_or_update/`, data, config(token));
 }
 
 // Base Exercises
@@ -88,6 +94,22 @@ ironAPI.getBaseExercises = async (token) => {
 }
 ironAPI.checkExerciseBase = async (data, token) => {
     return await axios.post(`${BASE_URL}/exercise_bases/check/`, data, config(token));
+}
+ironAPI.createExerciseBase = async (data, token) => {
+    return await axios.post(`${BASE_URL}/exercise_bases/`, data, config(token));
+}
+
+// Set Schema
+ironAPI.updateSetSchema = async (id, data, token) => {
+    return await axios.patch(`${BASE_URL}/set_schema/${id}/`, data, config(token));
+}
+
+// Sets
+ironAPI.createOrUpdateSet = async (id, data, token) => {
+    return await axios.post(`${BASE_URL}/sets/${id}/create_or_update/`, data, config(token));
+}
+ironAPI.deleteSet = async (id, token) => {
+    return await axios.delete(`${BASE_URL}/sets/${id}/`, config(token));
 }
 
 export default ironAPI

@@ -34,35 +34,64 @@ class SetSchemaSerializer(serializers.ModelSerializer):
         model = SetSchema
         fields = ['id', 'exercise', 'is_reps', 'is_weight', 'is_distance', 'is_time']
 
-class ExerciseSerializer(serializers.ModelSerializer):
-    sets = SetSerializer(many=True)
-    exercise_base = ExerciseBaseSerializer()
-    set_schema = SetSchemaSerializer()
+class ExerciseDeepSerializer(serializers.ModelSerializer):
+    sets = SetSerializer(many=True, read_only=True)
+    exercise_base = ExerciseBaseSerializer(read_only=True)
+    set_schema = SetSchemaSerializer(read_only=True)
     class Meta:
         model = Exercise
-        fields = ['id', 'exercise_base', 'number', 'section', 'sets', 'set_schema'] 
+        fields = ['id', 'exercise_base', 'number', 'section', 'sets', 'set_schema']
 
-class SectionSerializer(serializers.ModelSerializer):
-    exercises = ExerciseSerializer(many=True, read_only=True)
+    
+class ExerciseFlatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exercise
+        fields = ['id', 'exercise_base', 'number', 'section', 'set_schema']
+        read_only_fields = ['set_schema']
+    
+class SectionDeepSerializer(serializers.ModelSerializer):
+    exercises = ExerciseDeepSerializer(many=True, read_only=True)
     class Meta:
         model = Section
         fields = ['id', 'section_type', 'workout', 'number', 'description', 'exercises']
         read_only_fields = ['exercises']
 
-class WorkoutSerializer(serializers.ModelSerializer):
-    sections = SectionSerializer(many=True)
+class SectionFlatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Section
+        fields = ['id', 'section_type', 'workout', 'number', 'description', 'exercises']
+        read_only_fields = ['exercises']
+
+class WorkoutDeepSerializer(serializers.ModelSerializer):
+    sections = SectionDeepSerializer(many=True, read_only=True)
     class Meta:
         model = Workout
         fields = ['id', 'name', 'number', 'description', 'program_day', "sections"]
 
-class ProgramDaySerializer(serializers.ModelSerializer):
-    workouts = WorkoutSerializer(many=True)
+class WorkoutFlatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Workout
+        fields = ['id', 'name', 'number', 'description', 'program_day', "sections"]
+
+class ProgramDayDeepSerializer(serializers.ModelSerializer):
+    workouts = WorkoutDeepSerializer(many=True)
     class Meta:
         model = ProgramDay
         fields = ['id', 'program', 'day', 'day_type', 'workouts']
 
-class ProgramSerializer(serializers.ModelSerializer):
-    program_days = ProgramDaySerializer(many=True)
+class ProgramDayFlatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProgramDay
+        fields = ['id', 'program', 'day', 'day_type', 'workouts']
+
+class ProgramDeepSerializer(serializers.ModelSerializer):
+    program_days = ProgramDayDeepSerializer(many=True)
+    class Meta:
+        model = Program
+        fields = ['id', 'name', 'author', 'description','duration_wks','base_program_id','athlete','active','program_days']
+
+class ProgramFlatSerializer(serializers.ModelSerializer):
+    program_days = ProgramDayDeepSerializer(many=True)
     class Meta:
         model = Program
         fields = ['id', 'name', 'author', 'description','duration_wks','base_program_id','athlete','active','program_days']

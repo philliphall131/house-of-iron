@@ -9,6 +9,18 @@ from knox.views import LoginView as KnoxLoginView
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
 from .models import User
 
+class IronModelViewSet(ModelViewSet):
+    @action(detail=True, methods=['post'])
+    def create_or_update(self, request, pk=None, *args, **kwargs):
+        try:
+            if int(pk) >= 0:
+                return super().partial_update(request, *args, **kwargs)
+            else:
+                return self.create(request, *args, **kwargs)
+            
+        except Exception as e:
+            return Response({'error':str(e)}, status=status.HTTP_400_BAD_REQUEST)  
+
 class LoginView(KnoxLoginView):
     authentication_classes = [BasicAuthentication]
     permission_classes = [AllowAny]
@@ -38,7 +50,12 @@ class UserViewSet(ModelViewSet):
 
 class ProgramViewSet(ModelViewSet):
     queryset = Program.objects.all()
-    serializer_class = ProgramSerializer
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'destroy', 'partial_update', 'list']:
+            return ProgramFlatSerializer
+        else:
+            return ProgramDeepSerializer
 
     def create(self, request, *args, **kwargs):
         # customized: adding in the logged in user as the author
@@ -69,11 +86,20 @@ class ProgramViewSet(ModelViewSet):
 
 class ProgramDayViewSet(ModelViewSet):
     queryset = ProgramDay.objects.order_by('day')
-    serializer_class = ProgramDaySerializer
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'destroy', 'partial_update', 'list']:
+            return ProgramDayFlatSerializer
+        else:
+            return ProgramDayDeepSerializer
 
 class WorkoutViewSet(ModelViewSet):
     queryset = Workout.objects.order_by('number')
-    serializer_class = WorkoutSerializer
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'destroy', 'partial_update', 'list']:
+            return WorkoutFlatSerializer
+        else:
+            return WorkoutDeepSerializer
 
     def create(self, request, *args, **kwargs):
         day = ProgramDay.objects.get(id = request.data['program_day'])
@@ -82,14 +108,16 @@ class WorkoutViewSet(ModelViewSet):
         request.data['name'] = name
         return super().create(request, *args, **kwargs)
 
-class SectionViewSet(ModelViewSet):
+class SectionViewSet(IronModelViewSet):
     queryset = Section.objects.order_by('number')
-    serializer_class = SectionSerializer
 
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'destroy', 'partial_update', 'list', 'create_or_update']:
+            return SectionFlatSerializer
+        else:
+            return SectionDeepSerializer
 
-class ExerciseBaseViewSet(ModelViewSet):
+class ExerciseBaseViewSet(IronModelViewSet):
     queryset = ExerciseBase.objects.all()
     serializer_class = ExerciseBaseSerializer
 
@@ -103,11 +131,16 @@ class ExerciseBaseViewSet(ModelViewSet):
             # return true if exercise does exist
             return Response({'user_exists':True}, status=status.HTTP_200_OK)
         except Exception as e:
-            return Response({'error':str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error':str(e)}, status=status.HTTP_400_BAD_REQUEST)  
 
-class ExerciseViewSet(ModelViewSet):
+class ExerciseViewSet(IronModelViewSet):
     queryset = Exercise.objects.order_by('number')
-    serializer_class = ExerciseSerializer
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'destroy', 'partial_update', 'create_or_update', 'list']:
+            return ExerciseFlatSerializer
+        else:
+            return ExerciseDeepSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -119,12 +152,12 @@ class ExerciseViewSet(ModelViewSet):
         SetSchema.objects.create(exercise=new_exercise)
         
         headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)   
 
-class SetViewSet(ModelViewSet):
+class SetViewSet(IronModelViewSet):
     queryset = Set.objects.order_by('number')
-    serializer_class = SetSerializer
+    serializer_class = SetSerializer  
 
 class SetSchemaViewSet(ModelViewSet):
-    queryset = Set.objects.all()
+    queryset = SetSchema.objects.all()
     serializer_class = SetSchemaSerializer

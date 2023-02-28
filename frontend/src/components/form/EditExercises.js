@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { EditExercise } from "../components"
 
 const EditExercises = ({name, value, updateData}) => {
-  const [exercisesData, setExercisesData] = useState(value)
+  const [exercisesData, setExercisesData] = useState(value ? value : null)
 
   useEffect(()=>{
     updateData(name, exercisesData)
@@ -18,7 +18,7 @@ const EditExercises = ({name, value, updateData}) => {
   return (
     <div className="edit-exercises-container">
       {
-        exercisesData.map((exercise, index)=>(
+        exercisesData && exercisesData.map((exercise, index)=>(
           <EditExercise
             key={`ee${index}`}
             name={index}

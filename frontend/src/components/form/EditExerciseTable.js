@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
-import { TableInput, ToggleSwitch, EditExerciseRow, Button, IconButton } from '../components';
+import { useState, useEffect, useContext } from 'react';
+import AuthContext from '../../utils/AuthContext';
+import ironAPI from '../../utils/ironAPI';
+import { ToggleSwitch, EditExerciseRow, IconButton } from '../components';
 
 const EditExerciseTable = ({exercise, updateExercise}) => {
+  const { state } = useContext(AuthContext);
   const [sets, setSets] = useState(exercise.sets.sort((a,b)=>{return a.number-b.number}))
   const [checked, setChecked] = useState({
     is_reps: exercise.set_schema.is_reps,
@@ -38,25 +41,24 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
 
   const addRow = () => {
     let newSet = {
-      exercise: sets[0] && (sets[0].exercise ? sets[0].exercise : -1),
+      id: -1,
+      exercise: sets[0] ? (sets[0].exercise ? sets[0].exercise : -1): -1,
       number: sets.length + 1,
-      reps: null,
       planned_reps: null,
-      weight: null,
       planned_weight: null,
-      distance: null,
       planned_distance: null,
-      time_secs: null,
       planned_time_secs: null
     }
     setSets([...sets, newSet])
   }
 
-  const removeRow = () => {
+  const removeRow = async () => {
     if (sets.length > 1) {
       let newSets = [...sets]
-      newSets.pop()
+      let delSet = newSets.pop()
       setSets(newSets)
+      let response = await ironAPI.deleteSet(delSet.id, state.userToken)
+      console.log("Deleted set")
     }
   }
 

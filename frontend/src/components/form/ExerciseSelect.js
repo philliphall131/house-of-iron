@@ -32,7 +32,7 @@ const ExerciseSelect = ({name, value, updateExercise}) => {
   };
 
   const handleCreate = (inputValue) => {
-    let newObj = {id: 0, name: inputValue}
+    let newObj = {id: -1, name: inputValue}
     setOptions([...options, createOption(newObj)]);
     let obj = createOption(newObj)
     setSelectValue(obj);

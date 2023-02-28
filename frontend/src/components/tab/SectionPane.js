@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { EditSectionPane, DisplaySectionPane } from '../components';
 
-const SectionPane = ({section, fetchWorkout}) => {
-  const [edit, setEdit] = useState(false);
+const SectionPane = ({section, fetchWorkout, edit, setEdit}) => {
 
   return (
     <>

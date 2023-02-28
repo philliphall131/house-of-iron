@@ -15,7 +15,7 @@ const ExerciseTable = ({exercise}) => {
           </tr>
         </thead>
         <tbody>
-          {exercise.sets.map((set, index)=>(
+          {exercise.sets.sort((a,b)=>{return a.number-b.number}).map((set, index)=>(
             <tr key={`es${index}`}>
               <td className="cell rcell">{set.number}</td>
               <td className="cell">{set.planned_reps}</td>
