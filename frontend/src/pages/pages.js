@@ -8,5 +8,4 @@ export { default as NewProgramPage } from "./NewProgramPage";
 export { default as ProgramPage } from "./ProgramPage";
 export { default as SignupPage } from "./app/SignupPage";
 export { default as WorkoutPage } from "./WorkoutPage";
-export { default as EditExercisePage } from "./EditExercisePage";
 export { default as EditSectionPage } from "./EditSectionPage";

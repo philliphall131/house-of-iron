@@ -4,7 +4,7 @@ import AuthContext from './utils/AuthContext'
 import ironAPI from './utils/ironAPI';
 import { NavBar, LoadingScreen, Protected, SignedIn } from './components/components';
 import { LandingPage, Dashboard, SignupPage, LoginPage, MyProgramsPage,
-  ProgramPage, EditWorkoutPage, NewProgramPage, EditProgramPage, EditExercisePage,
+  ProgramPage, EditWorkoutPage, NewProgramPage, EditProgramPage,
   EditSectionPage } from "./pages/pages";
 
 function App() {
@@ -109,7 +109,6 @@ function App() {
               <Route path="/program/edit/:programId" element={<Protected  page={<EditProgramPage />}/>}/>
               <Route path="/workout/edit/:workoutId" element={<Protected  page={<EditWorkoutPage />}/>}/>
               <Route path="/section/edit/:sectionId" element={<Protected  page={<EditSectionPage />}/>}/>
-              <Route path="/exercise/edit/:exerciseId" element={<Protected  page={<EditExercisePage />}/>}/>
               <Route path="/programs" element={<Protected  page={<MyProgramsPage />}/>}/>
             </Routes>
           </AuthContext.Provider>

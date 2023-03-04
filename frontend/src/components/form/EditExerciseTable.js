@@ -57,8 +57,10 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
       let newSets = [...sets]
       let delSet = newSets.pop()
       setSets(newSets)
-      let response = await ironAPI.deleteSet(delSet.id, state.userToken)
-      console.log("Deleted set")
+      if (delSet.id !== -1){
+        let response = await ironAPI.deleteSet(delSet.id, state.userToken)
+      }
+      
     }
   }
 
@@ -108,7 +110,7 @@ const EditExerciseTable = ({exercise, updateExercise}) => {
               </th>
               <th className="cell data-col">
                 <div className="table-header-cell">
-                  <span>Time</span>
+                  <span>Time (s)</span>
                   <ToggleSwitch 
                     id={4} 
                     name={'is_time'} 

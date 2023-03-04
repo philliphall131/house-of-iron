@@ -2,12 +2,18 @@ import CreatableSelect from 'react-select/creatable';
 import { useContext, useEffect, useState } from 'react';
 import ironAPI from '../../utils/ironAPI';
 import AuthContext from '../../utils/AuthContext';
+import { CloseButton } from 'react-bootstrap';
 
 const createOption = (exercise) => {
-  return { value: exercise.id, label: exercise.name }
+  if (exercise == null){
+    return null
+  }
+  return { 
+    value: exercise.id, label: exercise.name 
+  }
 }
 
-const ExerciseSelect = ({name, value, updateExercise}) => {
+const ExerciseSelect = ({name, value, num, updateExercise}) => {
   const { state } = useContext(AuthContext);
   const [options, setOptions] = useState([]);
   const [selectValue, setSelectValue] = useState(value ? createOption(value):null)
@@ -44,7 +50,7 @@ const ExerciseSelect = ({name, value, updateExercise}) => {
 
   return (
     <div className='exercise-select-container'>
-      <label>1. </label>
+      <label>{num}. </label>
       <div className='exercise-select'>
         <CreatableSelect
           isClearable 
@@ -53,6 +59,7 @@ const ExerciseSelect = ({name, value, updateExercise}) => {
           options={options}
           value={selectValue}
           classNamePrefix="ph"
+          placeholder="Select or type an exercise"
         />
       </div>
     </div>

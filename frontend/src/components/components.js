@@ -7,6 +7,7 @@ export { default as EditorContainer } from './app/EditorContainer';
 export { default as Button } from './app/Button';
 export { default as IconButton } from './app/IconButton';
 export { default as ConfirmationModal } from './app/ConfirmationModal';
+export { default as NotificationnModal } from './app/NotificationModal';
 
 //form components
 export { default as TextInput } from './form/TextInput';

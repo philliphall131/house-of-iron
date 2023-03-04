@@ -79,6 +79,9 @@ ironAPI.updateSection = async (id, data, token) => {
 ironAPI.createOrUpdateSection = async (id, data, token) => {
     return await axios.post(`${BASE_URL}/sections/${id}/create_or_update/`, data, config(token));
 }
+ironAPI.fullUpdateSection = async (id, data, token) => {
+    return await axios.post(`${BASE_URL}/sections/${id}/full_section_update/`, data, config(token));
+}
 
 //Exercise
 ironAPI.getExercise = async (id, token) => {

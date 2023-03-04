@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { EditSectionPane, DisplaySectionPane } from '../components';
 
 const SectionPane = ({section, fetchWorkout, edit, setEdit}) => {

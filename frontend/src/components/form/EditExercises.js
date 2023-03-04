@@ -5,6 +5,10 @@ const EditExercises = ({name, value, updateData}) => {
   const [exercisesData, setExercisesData] = useState(value ? value : null)
 
   useEffect(()=>{
+    setExercisesData(value)
+  }, [JSON.stringify(value)])
+
+  useEffect(()=>{
     updateData(name, exercisesData)
   }, [JSON.stringify(exercisesData)])
 

@@ -64,26 +64,6 @@ const EditProgramPage = () => {
       }
     </>
   )
-    
-    //   <div className="program-body mt-0 pt-0">
-    //     <div className="schedule-body mt-0 pt-0">
-    //       <div className="schedule-title text-center my-0">Program Editor</div>
-    //       <Container>
-    //         <Row className='my-2'>
-    //           {program && program.duration_wks > 1 && 
-    //             <Col className='text-center'><Button variant="outline-dark">Copy Week 1 Template</Button></Col>
-    //           }
-    //         </Row>
-    //         {program && program.duration_wks && displayWeeks()}
-    //         <Row className='mb-3'>
-    //           <Col className='text-center'>
-    //             <Button variant='danger'>Delete Program</Button>
-    //           </Col>
-    //         </Row>
-    //       </Container>
-    //     </div>
-    //   </div>
-    // </div>
 }
 
 export default EditProgramPage

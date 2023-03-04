@@ -18,6 +18,7 @@ const EditExercise = ({name, value, updateExercisesData}) => {
     <div className='edit-exercise'>
       <ExerciseSelect
         name={'exercise_base'}
+        num = {exerciseValues.number}
         value={exerciseValues.exercise_base}
         updateExercise={updateExercise}
       />
