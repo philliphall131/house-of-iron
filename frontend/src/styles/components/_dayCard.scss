@@ -1,0 +1,12 @@
+@use '../layout';
+@use '../abstracts';
+@use '../base';
+
+.day-card-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.create-program-day-card {
+  text-align: center;
+}

@@ -3,9 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import AuthContext from './utils/AuthContext'
 import ironAPI from './utils/ironAPI';
 import { NavBar, LoadingScreen, Protected, SignedIn } from './components/components';
-import { LandingPage, Dashboard, SignupPage, LoginPage, MyProgramsPage,
-  ProgramPage, EditWorkoutPage, NewProgramPage, EditProgramPage,
-  EditSectionPage } from "./pages/pages";
+import { LandingPage, Dashboard, SignupPage, LoginPage, MyProgramsPage, 
+  EditWorkoutPage, NewProgramPage, EditProgramPage } from "./pages/pages";
 
 function App() {
 
@@ -104,11 +103,9 @@ function App() {
               <Route path="/signup" element={<SignedIn  page={<SignupPage />}/>}/>
               <Route path="/login" element={<SignedIn  page={<LoginPage />}/>}/>
               <Route path="/dashboard" element={<Protected  page={<Dashboard />}/>}/>
-              <Route path="/program" element={<Protected  page={<ProgramPage />}/>}/>
               <Route path="/program/new" element={<Protected  page={<NewProgramPage />}/>}/>
               <Route path="/program/edit/:programId" element={<Protected  page={<EditProgramPage />}/>}/>
               <Route path="/workout/edit/:workoutId" element={<Protected  page={<EditWorkoutPage />}/>}/>
-              <Route path="/section/edit/:sectionId" element={<Protected  page={<EditSectionPage />}/>}/>
               <Route path="/programs" element={<Protected  page={<MyProgramsPage />}/>}/>
             </Routes>
           </AuthContext.Provider>

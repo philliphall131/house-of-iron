@@ -72,6 +72,7 @@ class WorkoutFlatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workout
         fields = ['id', 'name', 'number', 'description', 'program_day', "sections"]
+        read_only_fields = ['sections']
 
 class ProgramDayDeepSerializer(serializers.ModelSerializer):
     workouts = WorkoutDeepSerializer(many=True)

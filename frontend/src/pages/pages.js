@@ -5,7 +5,5 @@ export { default as LandingPage } from "./app/LandingPage";
 export { default as LoginPage } from "./app/LoginPage";
 export { default as MyProgramsPage } from "./MyProgramsPage";
 export { default as NewProgramPage } from "./NewProgramPage";
-export { default as ProgramPage } from "./ProgramPage";
 export { default as SignupPage } from "./app/SignupPage";
 export { default as WorkoutPage } from "./WorkoutPage";
-export { default as EditSectionPage } from "./EditSectionPage";

@@ -1,6 +1,6 @@
 @use "sass:math";
 
-$nav-height: 8vh;
+$nav-height: 60px;
 $no-scroll-vh: 100-$nav-height;
 
 @mixin flex-row {

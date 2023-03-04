@@ -12,7 +12,6 @@ const EditProgramPage = () => {
   let navigate = useNavigate()
 
   useEffect(() => {
-    // fetch the program data from API backend
     const fetchProgram = () => {
       ironAPI.getProgram(programId, state.userToken)
         .then((response)=>{
@@ -22,44 +21,40 @@ const EditProgramPage = () => {
     fetchProgram();
   }, [programId, state]);
 
-  const addWorkout = (day) => {
+  const addWorkout = (day, number) => {
     let data = {
       program_day: day.id,
+      number: number
     }
     ironAPI.addWorkout(data, state.userToken)
       .then((response)=>{
         navigate(`/workout/edit/${response.data.id}`)
       })
-      .catch(()=>{
+      .catch((error)=>{
         console.log('error with adding a new workout')
+        console.log(error)
       })
-  }
-
-  let displayWeeks = () => {
-    let weeks = [];
-    for (let i=0; i<program.duration_wks; i++){
-      weeks.push(<CreateProgramWeek addWorkout={addWorkout} key={`wk-${i}`} week={i} program={program}/>)
-    }
-    return weeks
   }
 
   return (
     <>
       { 
         program && 
-          <EditorContainer title={program.name} subtitle={"Program Editor"}>
-            <Container>
-              <Row>
+          <EditorContainer title={program.name}>
+            <div className='program-container'>
+              {/* <div className='copy-template-button'>
                 {program && program.duration_wks > 1 && 
                   <Col className='text-center'><Button variant="outline-dark">Copy Week 1 Template</Button></Col>}
-              </Row>
-              {program.duration_wks && displayWeeks()}
+              </div> */}
+              {Array.from({length: program.duration_wks}, (_,i) => (
+                <CreateProgramWeek addWorkout={addWorkout} key={`wk-${i}`} week={i} program={program}/>
+              ))}
               <Row className='mb-3'>
                 <Col className='text-center'>
                   <Button variant='danger'>Delete Program</Button>
                 </Col>
               </Row>
-            </Container>
+            </div>
           </EditorContainer>
       }
     </>

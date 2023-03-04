@@ -14,34 +14,38 @@ const NavBar = () => {
   return (
     <div className="my-nav-container">
       <div className="my-nav-brand">
-        <Link className="my-nav-link brand-text" to="/">House of Iron</Link>
+        <Link to="/">
+          <div className="my-nav-item brand-text">
+            House of Iron
+          </div>
+        </Link>
       </div>
       <div className="my-nav">
         {state.user ?
           <>
-            <Link className="my-nav-link" to="/dashboard">
+            <Link to="/dashboard">
               <div className="my-nav-item">
                 Dashboard
               </div>
             </Link>
-            <Link className="my-nav-link" to="/account">
+            <Link to="/account">
               <div className="my-nav-item">
                 My Account
               </div>
             </Link>
-            <Link className="my-nav-link" to="/login">
+            <Link to="/login">
               <div className="my-nav-item right-item" onClick={logout}>
                 Logout
               </div>
             </Link>
           </> :
           <>
-            <Link className="my-nav-link" to="/signup">
+            <Link to="/signup">
               <div className="my-nav-item">
                 Sign Up
               </div>
             </Link>
-            <Link className="my-nav-link" to="/login">
+            <Link to="/login">
               <div className="my-nav-item right-item">
                 Login
               </div>

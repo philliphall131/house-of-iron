@@ -37,7 +37,7 @@ const EditWorkoutPage = () => {
       setNum = 1
     }
     // check that there isnt another new, unsaved section before making another
-    if (workout.sections[len-1].id === -1 ){
+    if ((len > 0) && (workout.sections[len-1].id === -1)){
       alert('Please save the previous new Section before moving on to others')
       setActiveTab(`tab${setNum}`)
       setEdit(true)
@@ -118,7 +118,10 @@ const EditWorkoutPage = () => {
   return (
     <>
       { workout ? 
-        <EditorContainer title={workout.name} subtitle={"Workout Editor"}>
+        <EditorContainer title={workout.name}>
+          <div className='workout-breadcrumb-row'>
+            <span className='breadcrumb'>{'<- '}Back</span>
+          </div>
             <div className="workout-editor-body">
               <Tabs 
                 addTab={addTab} 
